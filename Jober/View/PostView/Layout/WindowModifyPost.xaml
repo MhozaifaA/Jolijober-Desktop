@@ -1,0 +1,676 @@
+﻿<Window x:Class="Jober.View.PostView.Layout.WindowModifyPost"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Jober.View.PostView.Layout"
+        mc:Ignorable="d"
+
+        xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF" 
+
+        fw:AcrylicWindow.NoiseOpacity="0" 
+        fw:AcrylicWindow.Enabled="True"
+        fw:AcrylicWindow.ShowTitleBar="False"
+  
+      
+
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"   
+        FontFamily="{DynamicResource MaterialDesignFont}"
+
+        Background="Transparent" AllowsTransparency="True"  WindowStyle="None"   WindowStartupLocation="CenterScreen" 
+      
+       Topmost="False"
+        Title="WindowModifierCompany"  WindowState="Maximized" Height="650" Width="1100" >
+    <materialDesign:DialogHost Name="DialogHostWait">
+        <materialDesign:DialogHost.DialogContent>
+            <ProgressBar
+                Style="{DynamicResource MaterialDesignCircularProgressBar}"
+                HorizontalAlignment="Center"
+                Margin="16"
+                IsIndeterminate="True"
+                Value="0" >
+
+            </ProgressBar>
+        </materialDesign:DialogHost.DialogContent>
+        <!--650-->
+
+        <Border CornerRadius="16" Height="650" Width="1100">
+            <Border.Background >
+                <SolidColorBrush Color="#FF006478">
+
+                </SolidColorBrush>
+            </Border.Background>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition  Height="40">
+                    </RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0" >
+                    <Grid.ColumnDefinitions >
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+
+
+                    <TextBlock FontSize="28" Text="Add Post" Margin="0 5 0 0"
+                               Foreground="White" Grid.Column="1" HorizontalAlignment="Center"
+                               VerticalAlignment="Center"  FontWeight="Light"  >
+
+                    </TextBlock>
+
+
+
+                    <Button  Name="ButtonClose" Grid.Column="2" 
+                             Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
+                             HorizontalAlignment="Right" VerticalAlignment="Center" Click="ButtonClose_OnClick"
+                             ToolTip="Close" Width="24" Height="25" Margin="0 0 20 0" >
+                        <materialDesign:PackIcon HorizontalAlignment="Center" VerticalAlignment="Center" 
+                                                 Kind="WindowClose"
+                                                 Height="16"
+                                                 Width="16" />
+                    </Button>
+
+
+                </Grid>
+
+                <materialDesign:Card  Grid.Row="1"  materialDesign:ShadowAssist.ShadowDepth="Depth5"
+                                      Padding="10" VerticalAlignment="Stretch"
+                                      HorizontalAlignment="Stretch"   
+                                      Margin="10 0 10 10"
+                                      HorizontalContentAlignment="Stretch">
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="80"></RowDefinition>
+                            <RowDefinition Height="80"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="40"></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <TextBox Margin="5" Grid.Row="0" Name="TextBoxCompanyName" IsReadOnly="True"
+                                     Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"
+                                     VerticalAlignment="Top" FontSize="24" FontWeight="Regular" Height="70"
+                                     materialDesign:HintAssist.Hint="Company Name" />
+
+                        <ComboBox Name="ComboBoxSpecification" Grid.Row="1" FontSize="24"  SelectedValuePath="Id" DisplayMemberPath="Name" 
+                                  materialDesign:HintAssist.Hint="Specification"  Margin="20 0 20 0"  
+                                  Style="{StaticResource MaterialDesignFloatingHintComboBox}"/>
+
+                        <ScrollViewer  Grid.Row="2" VerticalScrollBarVisibility="Auto" >
+                            <Grid >
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="300"></RowDefinition>
+                                    <RowDefinition Height="10"></RowDefinition>
+                                    <RowDefinition Height="*"></RowDefinition>
+                                    <RowDefinition Height="40"></RowDefinition>
+                                </Grid.RowDefinitions>
+
+
+                                <Grid Grid.Row="0">
+
+                                    <materialDesign:DialogHost Name="DialogHostRegion" 
+                                                       Style="{StaticResource MaterialDesignEmbeddedDialogHost}">
+                                        <materialDesign:DialogHost.DialogContent>
+                                            <StackPanel
+                                    Margin="16">
+                                                <TextBlock>
+                                        Add a num of job:
+                                                </TextBlock>
+                                                <TextBox
+                                        Margin="0 8 0 0"
+                                        HorizontalAlignment="Stretch"
+                                        x:Name="TextBoxNumJob" />
+                                                <StackPanel
+                                        Orientation="Horizontal"
+                                        HorizontalAlignment="Right">
+                                                    <Button x:Name="ButtonOk" Click="ButtonOk_OnClick"
+                                            Style="{StaticResource MaterialDesignFlatButton}"
+                                            IsDefault="True"
+                                            Margin="0 8 8 0"
+                                            Command="materialDesign:DialogHost.CloseDialogCommand">
+                                                        <Button.CommandParameter>
+                                                            <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">
+                                                                True
+                                                            </system:Boolean>
+                                                        </Button.CommandParameter>
+                                                        OK
+                                                    </Button>
+                                                    <Button
+                                            Style="{StaticResource MaterialDesignFlatButton}"
+                                            IsCancel="True"
+                                            Margin="0 8 8 0"
+                                            Command="materialDesign:DialogHost.CloseDialogCommand">
+                                                        <Button.CommandParameter>
+                                                            <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">
+                                                                False
+                                                            </system:Boolean>
+                                                        </Button.CommandParameter>
+                                                        CANCEL
+                                                    </Button>
+                                                </StackPanel>
+                                            </StackPanel>
+
+                                        </materialDesign:DialogHost.DialogContent>
+
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                                <ColumnDefinition Width="10" ></ColumnDefinition>
+                                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+
+
+
+                                            <Grid Grid.Column="0">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="40"></RowDefinition>
+                                                    <RowDefinition Height="*"></RowDefinition>
+
+                                                </Grid.RowDefinitions>
+
+                                                <Border Grid.Row="0"   Background="#0097A7" Padding="15 5 15 5" >
+                                                    <StackPanel Margin="0" Orientation="Horizontal">
+
+
+
+                                                        <materialDesign:Card MaxWidth="200" VerticalAlignment="Center" Width="200"  HorizontalAlignment="Left"
+                                                 materialDesign:ShadowAssist.ShadowDepth="Depth4"  >
+
+                                                            <StackPanel  Grid.Row="0" Orientation="Horizontal"  >
+                                                                <materialDesign:PackIcon Kind="Search" Margin="10 10 10 5"  Height="20" HorizontalAlignment="Center" VerticalAlignment="Center"  />
+                                                                <TextBox TabIndex="-1" Name="TextBoxSearchRegion"   VerticalAlignment="Center" Width="150"
+                                             materialDesign:HintAssist.Hint="Search by Region"  />
+                                                            </StackPanel>
+                                                        </materialDesign:Card>
+
+                                                        <Label Content="Regions" FontSize="20"  Opacity=".5" Margin="50 0 0 0" VerticalAlignment="Center" ></Label>
+                                                    </StackPanel>
+                                                </Border>
+
+
+                                                <DataGrid  Name="DataGridRegion" Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"  IsSynchronizedWithCurrentItem="True"   IsReadOnly="True"    CanUserAddRows="False"   FontSize="14"   materialDesign:DataGridAssist.ColumnHeaderPadding="7"
+                           BorderBrush="#60CB95"   CanUserSortColumns="True" AutoGenerateColumns="false"  materialDesign:DataGridAssist.CellPadding="10 8 8 8"
+                  >
+                                                    <DataGrid.Resources>
+                                                        <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                                                            <Setter Property="Background" Value="#F7EDEDED" />
+                                                        </Style>
+                                                    </DataGrid.Resources>
+
+                                                    <DataGrid.Columns >
+
+                                                        <DataGridTextColumn Width="*" Header="Name" Binding="{Binding Area.Name}">
+                                                            <DataGridTextColumn.ElementStyle>
+                                                                <Style TargetType="TextBlock">
+                                                                    <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+                                                                    <Setter Property="ToolTip" Value="{Binding Text, 
+                                 RelativeSource={RelativeSource Self}}"/>
+                                                                </Style>
+                                                            </DataGridTextColumn.ElementStyle>
+                                                        </DataGridTextColumn>
+
+
+                                                        <DataGridTemplateColumn Width="Auto" Header="Operation">
+
+                                                            <DataGridTemplateColumn.CellTemplate>
+
+                                                                <DataTemplate >
+
+                                                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+
+                                                                        <Button  Name="ButtonPickRegion" Click="ButtonPickRegion_OnClick" ToolTip="Pick"	Width="20" Height="20" materialDesign:ShadowAssist.ShadowDepth="Depth0"  BorderThickness="0"  CommandParameter="{Binding Id}"   >
+
+                                                                            <Button.Background>
+                                                                                <ImageBrush ImageSource="../../../../Resource/option/right.png">
+
+                                                                                </ImageBrush>
+                                                                            </Button.Background>
+
+                                                                        </Button>
+
+
+                                                                    </StackPanel>
+
+                                                                </DataTemplate>
+
+                                                            </DataGridTemplateColumn.CellTemplate>
+
+                                                        </DataGridTemplateColumn>
+                                                    </DataGrid.Columns>
+
+                                                </DataGrid>
+
+
+
+
+
+                                            </Grid>
+
+
+                                            <GridSplitter   Name="GridSplitter0" Grid.Column="1" Width="10"      Background="#0097A7" HorizontalAlignment="Center" VerticalAlignment="Stretch" />
+
+
+                                            <Grid Grid.Column="2">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="40"></RowDefinition>
+                                                    <RowDefinition Height="*"></RowDefinition>
+
+                                                </Grid.RowDefinitions>
+
+                                                <Border Grid.Row="0"   Background="#0097A7" Padding="15 5 15 5" >
+                                                    <materialDesign:Card MaxWidth="200" VerticalAlignment="Center" Width="200"  HorizontalAlignment="Left"
+                                                 materialDesign:ShadowAssist.ShadowDepth="Depth4"  
+                            >
+                                                        <StackPanel  Grid.Row="0" Orientation="Horizontal"  >
+                                                            <materialDesign:PackIcon Kind="Search" Margin="10 10 10 5"  Height="20" HorizontalAlignment="Center" VerticalAlignment="Center"  />
+                                                            <TextBox TabIndex="-1" Name="TextBoxSearchCategoryPick"   VerticalAlignment="Center" Width="150"
+                                             materialDesign:HintAssist.Hint="Search Pick Region"  />
+                                                        </StackPanel>
+                                                    </materialDesign:Card>
+                                                </Border>
+
+
+                                                <DataGrid  Name="DataGridRegionPick" Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"  IsSynchronizedWithCurrentItem="True"   IsReadOnly="True"    CanUserAddRows="False"   FontSize="14"   materialDesign:DataGridAssist.ColumnHeaderPadding="7"
+                           BorderBrush="#60CB95"   CanUserSortColumns="True" AutoGenerateColumns="false"  materialDesign:DataGridAssist.CellPadding="10 8 8 8"
+                  >
+                                                    <DataGrid.Resources>
+                                                        <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                                                            <Setter Property="Background" Value="#F7EDEDED" />
+                                                        </Style>
+                                                    </DataGrid.Resources>
+
+                                                    <DataGrid.Columns >
+
+                                                        <DataGridTextColumn Width="*" Header="Name" Binding="{Binding CompanyArea.Area.Name}">
+                                                            <DataGridTextColumn.ElementStyle>
+                                                                <Style TargetType="TextBlock">
+                                                                    <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+                                                                    <Setter Property="ToolTip" Value="{Binding Text, 
+                                                         RelativeSource={RelativeSource Self}}"/>
+                                                                </Style>
+                                                            </DataGridTextColumn.ElementStyle>
+                                                        </DataGridTextColumn>
+                                                        <DataGridTextColumn Width="*" Header="NumJob" Binding="{Binding NumJob}"></DataGridTextColumn>
+
+
+                                                        <DataGridTemplateColumn Width="Auto" Header="Operation">
+
+                                                            <DataGridTemplateColumn.CellTemplate>
+
+                                                                <DataTemplate >
+
+                                                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+
+
+
+                                                                        <Button  Name="ButtonDeleteRegion" Click="ButtonDeleteRegion_OnClick" ToolTip="Delete"  Width="20" Height="20"  materialDesign:ShadowAssist.ShadowDepth="Depth0"  BorderThickness="0"   CommandParameter="{Binding CompanyAreaId}">
+
+                                                                            <Button.Background>
+                                                                                <ImageBrush ImageSource="../../../../Resource/option/x-button.png">
+
+                                                                                </ImageBrush>
+                                                                            </Button.Background>
+
+                                                                        </Button>
+
+                                                                    </StackPanel>
+
+                                                                </DataTemplate>
+
+                                                            </DataGridTemplateColumn.CellTemplate>
+
+                                                        </DataGridTemplateColumn>
+                                                    </DataGrid.Columns>
+
+                                                </DataGrid>
+
+
+
+                                            </Grid>
+
+
+                                        </Grid>
+
+                                    </materialDesign:DialogHost>
+
+                                </Grid>
+
+
+                                <GridSplitter   Name="GridSplitterAll" Grid.Row="1" Height="10"    Background="#0097A7" HorizontalAlignment="Stretch" VerticalAlignment="Center" />
+
+                                <Grid Grid.Row="2">
+
+                                   
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="50"></RowDefinition>
+                                                <RowDefinition Height="50"></RowDefinition>
+                                                <RowDefinition Height="*"></RowDefinition>
+                                                <RowDefinition Height="*"></RowDefinition>
+                                                <RowDefinition Height="300"></RowDefinition>
+                                            </Grid.RowDefinitions>
+
+                                            <Grid Grid.Row="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                                </Grid.ColumnDefinitions>
+
+                                                <DatePicker Grid.Column="0" Name="DatePickerDate"
+                                            VerticalAlignment="Center" Margin="20 0 20 0"
+                                           materialDesign:HintAssist.Hint="Date" SelectedDateFormat="Long"
+                                           Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+
+                                                <TextBox Grid.Column="1"   Name="TextBoxAge"
+                                                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                                VerticalAlignment="Center" Margin="20 0 20 0"  >
+                                                    <materialDesign:HintAssist.Hint>
+                                                        <StackPanel
+                                                   Orientation="Horizontal"
+                                                   Margin="-2 0 0 0">
+                                                            <materialDesign:PackIcon
+                                                       Kind="Calendars" Margin="0 0 10 0" />
+                                                            <TextBlock>
+                                                       Age
+                                                            </TextBlock>
+                                                        </StackPanel>
+                                                    </materialDesign:HintAssist.Hint>
+                                                </TextBox>
+
+
+                                            </Grid>
+
+                                            <Grid Grid.Row="1">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                                </Grid.ColumnDefinitions>
+
+                                                <TextBox Grid.Column="0"   Name="TextBoxSalary"
+                                                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                                VerticalAlignment="Center" Margin="20 0 20 0"  >
+                                                    <materialDesign:HintAssist.Hint>
+                                                        <StackPanel
+                                                   Orientation="Horizontal"
+                                                   Margin="-2 0 0 0">
+                                                            <materialDesign:PackIcon
+                                                       Kind="CurrencyUsd" Margin="0 0 10 0" />
+                                                            <TextBlock>
+                                                       Salary
+                                                            </TextBlock>
+                                                        </StackPanel>
+                                                    </materialDesign:HintAssist.Hint>
+                                                </TextBox>
+
+                                                <TextBox Grid.Column="1"  Name="TextBoxWorkHour"
+                                                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                                VerticalAlignment="Center" Margin="20 0 20 0"  >
+                                                    <materialDesign:HintAssist.Hint>
+                                                        <StackPanel
+                                                   Orientation="Horizontal"
+                                                   Margin="-2 0 0 0">
+                                                            <materialDesign:PackIcon
+                                                       Kind="ClockOutline" Margin="0 0 10 0" />
+                                                            <TextBlock>
+                                                       Work hour
+                                                            </TextBlock>
+                                                        </StackPanel>
+                                                    </materialDesign:HintAssist.Hint>
+                                                </TextBox>
+
+                                                
+                                            </Grid>
+
+                                            <TextBox   Grid.Row="2" Name="TextBoxSkills"
+                                                       Style="{StaticResource MaterialDesignFilledTextFieldTextBox}"
+                                                       Margin="20"
+                                                       MaxHeight="200" Height="150"
+                                                       VerticalAlignment="Center" HorizontalAlignment="Stretch"
+                                                       AcceptsReturn="True"
+                                                       TextWrapping="Wrap"
+                                                       SpellCheck.IsEnabled="True"
+                                                       VerticalScrollBarVisibility="Auto"
+                                                       HorizontalScrollBarVisibility="Auto"
+                                                       FontSize="24"
+                                                       materialDesign:HintAssist.Hint="Skills"
+                                            />
+
+                                            <TextBox   Grid.Row="3" Name="TextBoxNote"
+
+                                                       Style="{StaticResource MaterialDesignFilledTextFieldTextBox}"
+                                                       Margin="20"
+                                                       MaxHeight="100" Height="100"
+                                                       VerticalAlignment="Center" HorizontalAlignment="Stretch"
+                                                       AcceptsReturn="True"
+                                                       TextWrapping="Wrap"
+                                                       SpellCheck.IsEnabled="True"
+                                                       VerticalScrollBarVisibility="Auto"
+                                                       HorizontalScrollBarVisibility="Auto"
+                                                       FontSize="24"
+                                                       materialDesign:HintAssist.Hint="more..."
+                                            />
+
+                                            <Grid Grid.Row="4">
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                                        <ColumnDefinition Width="10" ></ColumnDefinition>
+                                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                                    </Grid.ColumnDefinitions>
+
+
+
+                                                    <Grid Grid.Column="0">
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition Height="40"></RowDefinition>
+                                                            <RowDefinition Height="*"></RowDefinition>
+
+                                                        </Grid.RowDefinitions>
+
+                                                        <Border Grid.Row="0"   Background="#0097A7" Padding="15 5 15 5" >
+                                                            <StackPanel Margin="0" Orientation="Horizontal">
+
+
+
+                                                                <materialDesign:Card MaxWidth="200" VerticalAlignment="Center" Width="200"  HorizontalAlignment="Left"
+                                                 materialDesign:ShadowAssist.ShadowDepth="Depth4"  >
+
+                                                                    <StackPanel  Grid.Row="0" Orientation="Horizontal"  >
+                                                                        <materialDesign:PackIcon Kind="Search" Margin="10 10 10 5"  Height="20" HorizontalAlignment="Center" VerticalAlignment="Center"  />
+                                                                        <TextBox TabIndex="-1" Name="TextBoxSearchCategory"   VerticalAlignment="Center" Width="150"
+                                             materialDesign:HintAssist.Hint="Search by Catergoty"  />
+                                                                    </StackPanel>
+                                                                </materialDesign:Card>
+
+                                                                <Label Content="Categories" FontSize="20"  Opacity=".5" Margin="50 0 0 0" VerticalAlignment="Center" ></Label>
+                                                            </StackPanel>
+                                                        </Border>
+
+
+                                                        <DataGrid  Name="DataGridCategory" Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"  IsSynchronizedWithCurrentItem="True"   IsReadOnly="True"    CanUserAddRows="False"   FontSize="14"   materialDesign:DataGridAssist.ColumnHeaderPadding="7"
+                           BorderBrush="#60CB95"   CanUserSortColumns="True" AutoGenerateColumns="false"  materialDesign:DataGridAssist.CellPadding="10 8 8 8"
+                  >
+                                                            <DataGrid.Resources>
+                                                                <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                                                                    <Setter Property="Background" Value="#F7EDEDED" />
+                                                                </Style>
+                                                            </DataGrid.Resources>
+
+                                                            <DataGrid.Columns >
+
+                                                                <DataGridTextColumn Width="*" Header="Name" Binding="{Binding Name}">
+                                                                    <DataGridTextColumn.ElementStyle>
+                                                                        <Style TargetType="TextBlock">
+                                                                            <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+                                                                            <Setter Property="ToolTip" Value="{Binding Text, 
+                                 RelativeSource={RelativeSource Self}}"/>
+                                                                        </Style>
+                                                                    </DataGridTextColumn.ElementStyle>
+                                                                </DataGridTextColumn>
+
+
+                                                                <DataGridTemplateColumn Width="Auto" Header="Operation">
+
+                                                                    <DataGridTemplateColumn.CellTemplate>
+
+                                                                        <DataTemplate >
+
+                                                                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+
+                                                                                <Button  Name="ButtonPickCategory"  ToolTip="Pick" Click="ButtonPickCategory_OnClick"	Width="20" Height="20" materialDesign:ShadowAssist.ShadowDepth="Depth0"  BorderThickness="0"  CommandParameter="{Binding Id}"   >
+
+                                                                                    <Button.Background>
+                                                                                        <ImageBrush ImageSource="../../../../Resource/option/right.png">
+
+                                                                                        </ImageBrush>
+                                                                                    </Button.Background>
+
+                                                                                </Button>
+
+
+                                                                            </StackPanel>
+
+                                                                        </DataTemplate>
+
+                                                                    </DataGridTemplateColumn.CellTemplate>
+
+                                                                </DataGridTemplateColumn>
+                                                            </DataGrid.Columns>
+
+                                                        </DataGrid>
+
+
+
+
+
+                                                    </Grid>
+
+
+                                                    <GridSplitter   Name="GridSplitter" Grid.Column="1" Width="10"      Background="#0097A7" HorizontalAlignment="Center" VerticalAlignment="Stretch" />
+
+
+                                                    <Grid Grid.Column="2">
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition Height="40"></RowDefinition>
+                                                            <RowDefinition Height="*"></RowDefinition>
+
+                                                        </Grid.RowDefinitions>
+
+                                                        <Border Grid.Row="0"   Background="#0097A7" Padding="15 5 15 5" >
+                                                            <materialDesign:Card MaxWidth="200" VerticalAlignment="Center" Width="200"  HorizontalAlignment="Left"
+                                                 materialDesign:ShadowAssist.ShadowDepth="Depth4"  
+                            >
+                                                                <StackPanel  Grid.Row="0" Orientation="Horizontal"  >
+                                                                    <materialDesign:PackIcon Kind="Search" Margin="10 10 10 5"  Height="20" HorizontalAlignment="Center" VerticalAlignment="Center"  />
+                                                                    <TextBox TabIndex="-1" Name="TextBoxSearchRegionPick"   VerticalAlignment="Center" Width="150"
+                                             materialDesign:HintAssist.Hint="Search Pick Catergoty"  />
+                                                                </StackPanel>
+                                                            </materialDesign:Card>
+                                                        </Border>
+
+
+                                                        <DataGrid  Name="DataGridCategoryPick" Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"  IsSynchronizedWithCurrentItem="True"   IsReadOnly="True"    CanUserAddRows="False"   FontSize="14"   materialDesign:DataGridAssist.ColumnHeaderPadding="7"
+                           BorderBrush="#60CB95"   CanUserSortColumns="True" AutoGenerateColumns="false"  materialDesign:DataGridAssist.CellPadding="10 8 8 8"
+                  >
+                                                            <DataGrid.Resources>
+                                                                <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                                                                    <Setter Property="Background" Value="#F7EDEDED" />
+                                                                </Style>
+                                                            </DataGrid.Resources>
+
+                                                            <DataGrid.Columns >
+
+                                                                <DataGridTextColumn Width="*" Header="Name" Binding="{Binding Name}">
+                                                                    <DataGridTextColumn.ElementStyle>
+                                                                        <Style TargetType="TextBlock">
+                                                                            <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+                                                                            <Setter Property="ToolTip" Value="{Binding Text, 
+                                                         RelativeSource={RelativeSource Self}}"/>
+                                                                        </Style>
+                                                                    </DataGridTextColumn.ElementStyle>
+                                                                </DataGridTextColumn>
+                                                               
+
+
+                                                                <DataGridTemplateColumn Width="Auto" Header="Operation">
+
+                                                                    <DataGridTemplateColumn.CellTemplate>
+
+                                                                        <DataTemplate >
+
+                                                                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+
+
+
+                                                                                <Button  Name="ButtonDeleteCategory"  Click="ButtonDeleteCategory_OnClick" ToolTip="Delete"  Width="20" Height="20"  materialDesign:ShadowAssist.ShadowDepth="Depth0"  BorderThickness="0"   CommandParameter="{Binding Id}">
+
+                                                                                    <Button.Background>
+                                                                                        <ImageBrush ImageSource="../../../../Resource/option/x-button.png">
+
+                                                                                        </ImageBrush>
+                                                                                    </Button.Background>
+
+                                                                                </Button>
+
+                                                                            </StackPanel>
+
+                                                                        </DataTemplate>
+
+                                                                    </DataGridTemplateColumn.CellTemplate>
+
+                                                                </DataGridTemplateColumn>
+                                                            </DataGrid.Columns>
+
+                                                        </DataGrid>
+
+
+
+                                                    </Grid>
+
+
+                                                </Grid>
+
+                                            </Grid>
+
+
+
+                                        </Grid>
+                               
+
+                                </Grid>
+
+                            </Grid>
+                            
+
+                        </ScrollViewer>
+
+                        <materialDesign:Badged Grid.Row="3"
+                               VerticalAlignment="Center"      Badge="New Post"
+                                    HorizontalAlignment="Center"    BadgeColorZoneMode="PrimaryDark">
+                            <Button Name="ButtonAdd" Click="ButtonAdd_OnClick" Foreground="White" Style="{StaticResource MaterialDesignRaisedAccentButton}">
+                                Add Post
+                            </Button>
+                        </materialDesign:Badged>
+
+                    </Grid>
+
+
+                </materialDesign:Card>
+
+            </Grid>
+
+
+        </Border>
+
+    </materialDesign:DialogHost>
+</Window>

@@ -1,0 +1,313 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A35BF1CD-9AB9-405F-8AF5-7B6B6E7F3F05}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Jober</RootNamespace>
+    <AssemblyName>Jober</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentWPF, Version=0.6.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentWPF.0.6.1\lib\net45\FluentWPF.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCharts, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCharts.0.9.7\lib\net45\LiveCharts.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCharts.Wpf, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCharts.Wpf.0.9.7\lib\net45\LiveCharts.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignColors, Version=1.1.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignColors.1.1.2\lib\net45\MaterialDesignColors.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignThemes.Wpf, Version=2.5.1.1345, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignThemes.2.5.1\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Migrations\201904261259385_one.cs" />
+    <Compile Include="Migrations\201904261259385_one.Designer.cs">
+      <DependentUpon>201904261259385_one.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905151412302_tow.cs" />
+    <Compile Include="Migrations\201905151412302_tow.Designer.cs">
+      <DependentUpon>201905151412302_tow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Model\baseclass\BaseProp.cs" />
+    <Compile Include="Model\CommandModel\Command.cs" />
+    <Compile Include="Model\CompanyModel\Company.cs" />
+    <Compile Include="Model\CompanyModel\CompanyArea.cs" />
+    <Compile Include="Model\CompanyModel\CompanyJobPost.cs" />
+    <Compile Include="Model\CompanyModel\CompanySpecification.cs" />
+    <Compile Include="Model\CompanyModel\Contract.cs" />
+    <Compile Include="Model\CompanyModel\Field.cs" />
+    <Compile Include="Model\CompanyModel\Specification.cs" />
+    <Compile Include="Model\ConnectionDbContext.cs" />
+    <Compile Include="Model\MutualModel\Area.cs" />
+    <Compile Include="Model\MutualModel\RequestCompanyJobPostUser.cs" />
+    <Compile Include="Model\PostModel\Category.cs" />
+    <Compile Include="Model\PostModel\JobPost.cs" />
+    <Compile Include="Model\PostModel\JobPostCategory.cs" />
+    <Compile Include="Model\PostModel\ReactUserJobPost.cs" />
+    <Compile Include="Model\UserModel\ApplyPost.cs" />
+    <Compile Include="Model\UserModel\Qualification.cs" />
+    <Compile Include="Model\UserModel\ReactApplyPostCompany.cs" />
+    <Compile Include="Model\UserModel\User.cs" />
+    <Compile Include="Model\UserModel\UserQualification.cs" />
+    <Compile Include="ViewModel\CompanyAreaNumJob.cs" />
+    <Compile Include="ViewModel\SearchBy.cs" />
+    <Compile Include="ViewModel\VMJobPost\ViewModelJobPost.cs" />
+    <Compile Include="ViewModel\VMJobPost\JobPostAreaNum.cs" />
+    <Compile Include="ViewModel\_CompanySpecification.cs" />
+    <Compile Include="View\CommandView\ModifyCommand.xaml.cs">
+      <DependentUpon>ModifyCommand.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CommandView\UserControlCommand.xaml.cs">
+      <DependentUpon>UserControlCommand.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CommandView\WindowDisplayCommand.xaml.cs">
+      <DependentUpon>WindowDisplayCommand.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PostView\Layout\WindowModifyPost.xaml.cs">
+      <DependentUpon>WindowModifyPost.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PostView\RawPost\UserControlPost.xaml.cs">
+      <DependentUpon>UserControlPost.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PostView\WindowPost.xaml.cs">
+      <DependentUpon>WindowPost.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Settings\ManegeDataView\Controller\UserControlArea.xaml.cs">
+      <DependentUpon>UserControlArea.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Settings\ManegeDataView\Controller\UserControlCompany.xaml.cs">
+      <DependentUpon>UserControlCompany.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Settings\ManegeDataView\Controller\UserControlField.xaml.cs">
+      <DependentUpon>UserControlField.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Settings\ManegeDataView\Controller\UserControlSpecification.xaml.cs">
+      <DependentUpon>UserControlSpecification.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Settings\ManegeDataView\ManegeData.xaml.cs">
+      <DependentUpon>ManegeData.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Settings\ManegeDataView\Windows\WindowModifierCompany.xaml.cs">
+      <DependentUpon>WindowModifierCompany.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Settings\StatisticsView\Charts\ChartAcceptJob.xaml.cs">
+      <DependentUpon>ChartAcceptJob.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Settings\StatisticsView\Statistics.xaml.cs">
+      <DependentUpon>Statistics.xaml</DependentUpon>
+    </Compile>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="View\CommandView\ModifyCommand.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CommandView\UserControlCommand.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CommandView\WindowDisplayCommand.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PostView\Layout\WindowModifyPost.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PostView\RawPost\UserControlPost.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PostView\WindowPost.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Settings\ManegeDataView\Controller\UserControlArea.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Settings\ManegeDataView\Controller\UserControlCompany.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Settings\ManegeDataView\Controller\UserControlField.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Settings\ManegeDataView\Controller\UserControlSpecification.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Settings\ManegeDataView\ManegeData.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Settings\ManegeDataView\Windows\WindowModifierCompany.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Settings\StatisticsView\Charts\ChartAcceptJob.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Settings\StatisticsView\Statistics.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Migrations\201904261259385_one.resx">
+      <DependentUpon>201904261259385_one.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905151412302_tow.resx">
+      <DependentUpon>201905151412302_tow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resource\icon\Artboard 1JoliJober256.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\icon\JoliJober-icon 256.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\icon\Artboard 1JoliJober-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\icon\Artboard 1JoliJober-icon32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\icon\Artboard 1JoliJober-icon16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\icon\Artboard 1JoliJober-icon256.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\icon\Artboard 1JoliJober-icon36L.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\image\Artboard 1JoliJober1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\option\edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\option\x-button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\option\basket.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\option\right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\option\document.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\option\user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\option\view.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\image\business-banners-set_1209-5.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\pic\command.JPG" />
+    <Resource Include="Resource\pic\main.jpg" />
+    <Resource Include="Resource\pic\post.JPG" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

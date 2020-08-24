@@ -1,0 +1,1178 @@
+﻿<Window x:Class="Jober.View.PostView.WindowPost"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Jober.View.PostView"
+        mc:Ignorable="d"
+
+        
+
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+     
+        xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
+
+        xmlns:rawPost="clr-namespace:Jober.View.PostView.RawPost"
+
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+
+        WindowStartupLocation="CenterScreen"
+        
+        fw:AcrylicWindow.NoiseOpacity="0" 
+        fw:AcrylicWindow.Enabled="True" 
+        fw:AcrylicWindow.ShowTitleBar="False"
+     
+        
+     
+        Topmost="False" WindowStyle="None"  MouseLeftButtonDown="WindowPost_OnMouseLeftButtonDown"
+        Title="WindowPost" Height="700" Width="1000">
+    <!--fw:AcrylicWindow.Enabled="True"   fw:AcrylicWindow.ShowTitleBar="True"
+    fw:AcrylicWindow.FallbackColor="AliceBlue"
+    fw:AcrylicWindow.TintOpacity="0"-->
+
+    <materialDesign:DialogHost Name="DialogHostWaitWindow">
+        <materialDesign:DialogHost.DialogContent>
+            <ProgressBar
+                Style="{DynamicResource MaterialDesignCircularProgressBar}"
+                HorizontalAlignment="Center"
+                Margin="16"
+                IsIndeterminate="True"
+                Value="0" />
+        </materialDesign:DialogHost.DialogContent>
+        <!--SnackbarMessageQueue messageQueue = new SnackbarMessageQueue();
+        SnackbarOne.MessageQueue = messageQueue;
+        messageQueue.Enqueue("تمت الإضافة بنجاح !");-->
+
+        <!--<materialDesign:TransitionerSlide Background="{DynamicResource MaterialDesignDarkBackground}"
+                                          Foreground="{DynamicResource MaterialDesignDarkForeground}"
+                                          ClipToBounds="True">
+            <materialDesign:TransitionerSlide.OpeningEffects>
+                <materialDesign:TransitionEffect Kind="SlideInFromLeft" Duration="0:0:0.8" />
+                <materialDesign:TransitionEffect Kind="SlideInFromBottom" Duration="0:0:0.8" OffsetTime="0:0:0.15" />
+            </materialDesign:TransitionerSlide.OpeningEffects>
+            <local:Slide4_CombineTransitions />
+        </materialDesign:TransitionerSlide>-->
+
+
+
+
+
+        <Grid >
+
+            <materialDesign:Transitioner  Name="Transitioner"  Visibility="Visible"  SelectedIndex="0" DefaultTransitionOrigin="0.5,0.5">
+                <!--Background="#FFAB00"  590097A7-->
+               
+
+                <Border Name="BorderDisplay"   Background="Transparent">
+
+
+                    <materialDesign:DialogHost Name="DialogHostWaitDisplay">
+                        <materialDesign:DialogHost.DialogContent>
+                            <ProgressBar
+                                Style="{DynamicResource MaterialDesignCircularProgressBar}"
+                                HorizontalAlignment="Center"
+                                Margin="16"
+                                IsIndeterminate="True"
+                                Value="0" />
+                        </materialDesign:DialogHost.DialogContent>
+
+
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <!--//not used-->
+                                <RowDefinition Height="Auto"></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <Grid Grid.Row="0" >
+
+                                <materialDesign:ColorZone  Name="ColorZoneTopBar" MouseDoubleClick="ColorZoneTopBar_OnMouseDoubleClick"
+                         Mode="PrimaryDark"
+                         Padding="16"
+                         CornerRadius="0 0 3 3"
+                         materialDesign:ShadowAssist.ShadowDepth="Depth3"
+                         Margin="0">
+
+
+
+
+                                    <Grid>
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="316"></ColumnDefinition>
+                                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+
+                                        </Grid.ColumnDefinitions>
+
+                                        <StackPanel Grid.Column="0" 
+                                        Orientation="Horizontal" >
+
+
+
+                                            <ToggleButton          
+                                    Style="{DynamicResource MaterialDesignHamburgerToggleButton}" />
+
+                                            <materialDesign:Chip Margin="20 0 0 0"
+                                    Content="Apply Post "
+                                    IconBackground="{DynamicResource PrimaryHueDarkBrush}"
+                                    IconForeground="{DynamicResource PrimaryHueDarkForegroundBrush}">
+                                                <materialDesign:Chip.Icon>
+                                                    <materialDesign:PackIcon
+                                            Kind="AccountLocation"></materialDesign:PackIcon>
+                                                </materialDesign:Chip.Icon>
+
+                                            </materialDesign:Chip>
+                                            <materialDesign:Chip Margin="20 0 0 0"
+                                                     Content="User Profile"
+                                                     IconBackground="{DynamicResource PrimaryHueDarkBrush}"
+                                                     IconForeground="{DynamicResource PrimaryHueDarkForegroundBrush}">
+                                                <materialDesign:Chip.Icon>
+                                                    <materialDesign:PackIcon
+                                            Kind="Account"></materialDesign:PackIcon>
+                                                </materialDesign:Chip.Icon>
+                                            </materialDesign:Chip>
+
+
+
+                                        </StackPanel>
+
+
+
+
+                                        <materialDesign:ColorZone Grid.Column="1"
+                                 Mode="Standard"
+                                 Padding="8 4 8 4"
+                                 CornerRadius="2"
+                                 Panel.ZIndex="1"
+                                 Margin="16 0 0 0"
+                                 materialDesign:ShadowAssist.ShadowDepth="Depth1">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition
+                                             Width="Auto" />
+                                                    <ColumnDefinition
+                                             Width="*" />
+                                                    <ColumnDefinition
+                                             Width="Auto" />
+                                                </Grid.ColumnDefinitions>
+                                                <Button
+                                         Style="{DynamicResource MaterialDesignToolButton}">
+                                                    <materialDesign:PackIcon
+                                             Kind="Magnify"
+                                             Opacity=".56" />
+                                                </Button>
+                                                <TextBox
+                                         Grid.Column="1"
+                                         Margin="8 0 0 0"
+                                         materialDesign:HintAssist.Hint="Custom search"
+                                         materialDesign:TextFieldAssist.DecorationVisibility="Collapsed"
+                                         BorderThickness="0"
+                                         MinWidth="200" MaxWidth="220"
+                                         VerticalAlignment="Center" />
+                                                <Button
+                                         Style="{DynamicResource MaterialDesignToolButton}"
+                                         Grid.Column="2">
+                                                    <materialDesign:PackIcon
+                                             Kind="Microphone"
+                                             Opacity=".56"
+                                             Margin="8 0 0 0" />
+                                                </Button>
+                                            </Grid>
+                                        </materialDesign:ColorZone>
+
+
+
+
+                                        <StackPanel Grid.Column="2" 
+                                        Orientation="Horizontal" HorizontalAlignment="Right">
+
+
+
+                                            <TextBlock Margin="20 0 10  0"   VerticalAlignment="Center" HorizontalAlignment="Center">
+                                    <Hyperlink 
+                                        Foreground="White"  FontSize="12"   Style="{StaticResource MaterialDesignCaptionHyperlink}"><Run Text="BOX Mail"/>
+                                    </Hyperlink>
+                                            </TextBlock>
+                                            <materialDesign:Badged Name="BadgedNumPost"
+                                    Badge="99+"  Margin="0 0 20 0">
+                                                <Button Command="Cut" 
+                                    ToolTip="Box Mail"
+                                    ToolBar.OverflowMode="AsNeeded">
+                                                    <materialDesign:PackIcon
+                                        Kind="Mail" />
+                                                </Button>
+                                            </materialDesign:Badged>
+                                            <TextBlock Margin="0 0 10  0"   VerticalAlignment="Center" HorizontalAlignment="Center">
+                                    <Hyperlink 
+                                        Foreground="White"  FontSize="12"   Style="{StaticResource MaterialDesignCaptionHyperlink}"><Run Text="Checking new Job"/>
+                                    </Hyperlink>
+                                            </TextBlock>
+                                            <Button  VerticalAlignment="Center" HorizontalAlignment="Center"
+                                                    Style="{StaticResource MaterialDesignFloatingActionButton}"
+                                                    materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
+                                                    materialDesign:ButtonProgressAssist.Value="-1"
+                                                    materialDesign:ButtonProgressAssist.IsIndeterminate="True"
+                                                    Content="{materialDesign:PackIcon CloudUpload}" Height="30" Width="30" Margin="0 0 20  0" />
+
+
+                                            <materialDesign:PopupBox
+                                    DockPanel.Dock="Right"
+                                    PlacementMode="BottomAndAlignRightEdges">
+
+                                                <Menu
+                                        IsMainMenu="True">
+                                                    <MenuItem
+                                            Header="_View">
+                                                        <MenuItem
+                                                Header="Save change post">
+                                                            <MenuItem.Icon>
+                                                                <materialDesign:PackIcon
+                                                        Kind="ContentSave" />
+                                                            </MenuItem.Icon>
+                                                        </MenuItem>
+                                                        <MenuItem
+                                                Header="About As.." />
+                                                        <MenuItem
+                                                Header="Refresh"
+                                                InputGestureText="Ctrl+R">
+                                                            <MenuItem.Icon>
+                                                                <materialDesign:PackIcon
+                                                        Kind="Refresh" />
+                                                            </MenuItem.Icon>
+                                                        </MenuItem>
+                                                        <Separator />
+                                                        <MenuItem Name="MenuItemModren" 
+                                                Header="Use Modern Job post" Click="MenuItemModren_OnClick"
+                                                IsCheckable="True"
+                                                IsChecked="True" />
+
+                                                        <MenuItem  
+                                                Header="let's Expand it ☺"
+                                                InputGestureText="Ctrl+T">
+                                                            <MenuItem 
+                                                    Header="Give Support to JoliJober™"
+                                                    IsCheckable="True" />
+                                                        </MenuItem>
+                                                        <MenuItem
+                                                Header="Operations"
+                                                >
+                                                            <MenuItem
+                                                    Header="Create User">
+                                                                <MenuItem.Icon>
+                                                                    <materialDesign:PackIcon
+                                                            Kind="UserPlus" />
+                                                                </MenuItem.Icon>
+                                                            </MenuItem>
+                                                            <MenuItem Name="MenuItemLogout" Click="MenuItemLogout_OnClickuItemLogout_OnClick"
+                                                    Header="log out">
+                                                                <MenuItem.Icon>
+                                                                    <materialDesign:PackIcon
+                                                            Kind="Logout" />
+                                                                </MenuItem.Icon>
+                                                            </MenuItem>
+                                                        </MenuItem>
+                                                    </MenuItem>
+                                                    <MenuItem
+                                            Header="_more..">
+                                                        <MenuItem
+                                                Header="_Copy Post"
+                                                Command="Copy">
+                                                            <MenuItem.Icon>
+                                                                <materialDesign:PackIcon
+                                                        Kind="ContentCopy" />
+                                                            </MenuItem.Icon>
+                                                        </MenuItem>
+                                                        <MenuItem
+                                                Header="_Paste Post"
+                                                Command="Paste">
+                                                            <MenuItem.Icon>
+                                                                <materialDesign:PackIcon
+                                                        Kind="ContentPaste" />
+                                                            </MenuItem.Icon>
+                                                        </MenuItem>
+                                                    </MenuItem>
+                                                </Menu>
+
+                                            </materialDesign:PopupBox>
+
+
+                                        </StackPanel>
+
+
+                                    </Grid>
+
+
+
+                                </materialDesign:ColorZone>
+
+
+
+                            </Grid>
+
+
+
+                            <Grid Grid.Row="1">
+                                <!--MaxWidth="500" MinWidth="300"-->
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"  MaxWidth="500" MinWidth="300" ></ColumnDefinition>
+                                    <ColumnDefinition Width="10" ></ColumnDefinition>
+                                    <ColumnDefinition Width="*" ></ColumnDefinition>
+                                    <ColumnDefinition Width="230" ></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+
+
+
+
+
+                                <!--<materialDesign:Flipper   Height="700" MinHeight="700"
+                                                 >
+                                    <materialDesign:Flipper.FrontContent >-->
+
+                                        <Grid Grid.Column="0" Name="Grid0"  >
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"></RowDefinition>
+                                        <RowDefinition Height="80"></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                                    <!--///////////////////////////////////////***********************************************////////////////////////////////////////////////-->
+                        
+                                            
+                                    <Grid Grid.Row="0"  Background="White" >
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                            <RowDefinition Height="*"></RowDefinition>
+                                        </Grid.RowDefinitions>
+
+                                        <Grid Grid.Row="0" Background="#0097A7" >
+                                            <Grid.Effect>
+                                                <DropShadowEffect BlurRadius="10" ShadowDepth="2">
+                                                </DropShadowEffect>
+                                            </Grid.Effect>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="40"></RowDefinition>
+                                                <RowDefinition Height="60"></RowDefinition>
+                                                <RowDefinition Height="30"></RowDefinition>
+                                                <RowDefinition Height="40"></RowDefinition>
+                                            </Grid.RowDefinitions>
+
+                                            <StackPanel Grid.Row="0" Margin="5 0 0 0" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+
+                                                <materialDesign:PackIcon  Margin="20 0 0 0"
+                                                    Kind="CalendarDay"
+                                                    Opacity=".56" />
+                                                <TextBlock   Name="TextBlockDate"  Margin="10 0 0 0"
+                                                             Text="{Binding Date, StringFormat={}{0:yyyy-MM-dd HH:mm:ss}}"
+                                                             Foreground="#ccc"  Style="{StaticResource MaterialDesignBody1TextBlock}"
+                                                             VerticalAlignment="Center"
+                                                />
+                                            </StackPanel>
+
+                                            <!--<TextBlock Grid.Row="1" Name="TextBlockSpecification" Text="Specification" VerticalAlignment="Center" 
+                                                       Margin="20 0 0 0" FontWeight="Regular" Foreground="White"  FontSize="32"  Style="{StaticResource MaterialDesignHeadlineTextBlock}" 
+                                                       HorizontalAlignment="Left" ></TextBlock>-->
+
+                                            <materialDesign:ColorZone Grid.Row="1" Padding="0" Margin="0"
+                                                                      Mode="PrimaryMid"  VerticalAlignment="Center" HorizontalAlignment="Stretch">
+                                                <materialDesign:ColorZone.Background>
+                                                    <LinearGradientBrush EndPoint="0.5,0" StartPoint="0.5,0.5">
+                                                        <GradientStop Color="#00BCD4"/>
+                                                        <GradientStop Color="#55D2E2" Offset="1"/>
+                                                    </LinearGradientBrush>
+                                                </materialDesign:ColorZone.Background>
+                                                <StackPanel Margin="0" Orientation="Horizontal">
+
+                                                    <RadioButton Name="RadioButtonSpecification"
+                                                        Style="{StaticResource MaterialDesignTabRadioButton}"
+                                                        Margin="20 0 0 0" Padding="0"
+                                                        IsChecked="True" FontWeight="Regular" Foreground="White"  FontSize="32"
+                                                        Content="Specification" Height="50" />
+                                                </StackPanel>
+                                            </materialDesign:ColorZone>
+
+
+                                            <Label Grid.Row="2" Margin="20 0 0 0" Content="Field" Name="LabelField"
+                                                   VerticalAlignment="Bottom" HorizontalAlignment="Left" Padding="0"
+                                                       HorizontalContentAlignment="Left" VerticalContentAlignment="Bottom"
+                                                  FontSize="16"   FontWeight="Regular" Foreground="#ccc" 
+                                                       Style="{StaticResource MaterialDesignLabel}"></Label>
+
+                                            <StackPanel Grid.Row="3" Margin="20 0 0 0" Orientation="Horizontal">
+                                                <TextBlock   VerticalAlignment="Top" Text="Company" Foreground="White"
+                                                             Name="TextBlockCompanyName"  FontSize="24"
+                                                             HorizontalAlignment="Left" />
+
+                                                <TextBlock   VerticalAlignment="Center"   HorizontalAlignment="Left" >
+                                                <Hyperlink  Foreground="#FFAB00"  Name="HyperlinkCompany" FontSize="20" FontWeight="UltraLight"
+                                                                Style="{StaticResource MaterialDesignBody2Hyperlink}" >
+                                                   -visit
+                                                </Hyperlink>
+                                                </TextBlock>
+
+                                            </StackPanel>
+
+
+
+                                        </Grid>
+
+
+                                        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto"></RowDefinition>
+                                                    <RowDefinition Height="40"></RowDefinition>
+                                                    <RowDefinition Height="Auto"></RowDefinition>
+                                                    <RowDefinition Height="40"></RowDefinition>
+                                                    <RowDefinition Height="Auto"></RowDefinition>
+                                                    <RowDefinition Height="Auto"></RowDefinition>
+                                                </Grid.RowDefinitions>
+
+                                                <Expander Grid.Row="0"
+                                                    HorizontalAlignment="Stretch"
+                                                    Header="About Company">
+                                                    <StackPanel
+                                                        Orientation="Vertical"
+                                                        TextBlock.Foreground="{DynamicResource MaterialDesignBody}"
+                                                        Margin="24,8,24,16">
+                                                        <TextBlock
+                                                            Text="Description" />
+                                                        <TextBlock Name="TextBlockAboutCompany"
+                                                            Opacity=".68"
+                                                            Text="note company" TextWrapping="Wrap" />
+                                                    </StackPanel>
+                                                </Expander>
+
+
+                                                <TextBlock Grid.Row="1" FontSize="20"
+                                                            Margin="20 0 0 0" HorizontalAlignment="Left" VerticalAlignment="Center"
+                                                           Style="{StaticResource MaterialDesignButtonTextBlock}">
+                                                    Jobs available :
+                                                </TextBlock>
+
+                                                <Grid  Grid.Row="2" >
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="20"></ColumnDefinition>
+                                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                                    </Grid.ColumnDefinitions>
+                                                    <Rectangle Grid.Column="0" Width="15" VerticalAlignment="Stretch" 
+                                                               HorizontalAlignment="Left" Fill="#00BCD4"></Rectangle>
+
+                                                    <DataGrid  Name="DataGridAreaNum" Grid.Column="1" 
+                                                               IsReadOnly="True"    CanUserAddRows="False" 
+                                                               FontSize="14"   materialDesign:DataGridAssist.ColumnHeaderPadding="7"
+                                                               CanUserSortColumns="True" AutoGenerateColumns="false"  materialDesign:DataGridAssist.CellPadding="10 8 8 8">
+
+                                                        <DataGrid.Resources>
+                                                            <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                                                                <Setter Property="Background" Value="#F7EDEDED" />
+                                                            </Style>
+                                                        </DataGrid.Resources>
+
+                                                        <DataGrid.Columns >
+                                                            <DataGridTextColumn  Width="*" Header="Ragion Name" Binding="{Binding Area.Name}"></DataGridTextColumn>
+                                                            <DataGridTextColumn Width="*" Header="Num of jpb" Binding="{Binding Numjob}"></DataGridTextColumn>
+
+                                                        </DataGrid.Columns>
+
+                                                    </DataGrid>
+
+
+                                                </Grid>
+
+                                                <Grid Grid.Row="3">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                                    </Grid.ColumnDefinitions>
+
+                                                    <StackPanel Grid.Column="0"
+                                                                Margin="20 0 0 0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+
+                                                        <materialDesign:PackIcon  Margin="0 0 0 0" 
+                                                                                  Kind="Coin" VerticalAlignment="Center"
+                                                                                  Opacity=".56" />
+                                                        <TextBlock     Margin="5 0 0 0" 
+                                                                     Text="Salary :" 
+                                                                       Style="{StaticResource MaterialDesignBody1TextBlock}"
+                                                                     VerticalAlignment="Center"/>
+                                                        <TextBox Name="TextBoxSalary" IsReadOnly="True"
+                                                             VerticalAlignment="Center"  materialDesign:TextFieldAssist.UnderlineBrush="#FFAB00"
+                                                            HorizontalAlignment="Left"  Margin="10 0 0 0" Text="9999"
+                                                             />
+
+
+                                                    </StackPanel>
+
+                                                    <StackPanel Grid.Column="1"
+                                                                Margin="20 0 0 0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+
+                                                        <materialDesign:PackIcon  Margin="0 0 0 0" 
+                                                                                  Kind="timer" VerticalAlignment="Center"
+                                                                                  Opacity=".56" />
+                                                        <TextBlock     Margin="5 0 0 0" 
+                                                                       Text="Work hour :" 
+                                                                       Style="{StaticResource MaterialDesignBody1TextBlock}"
+                                                                       VerticalAlignment="Center"/>
+                                                        <TextBox Name="TextBoxWorkHour" IsReadOnly="True"
+                                                                 VerticalAlignment="Center"  materialDesign:TextFieldAssist.UnderlineBrush="#FFAB00"
+                                                                 HorizontalAlignment="Left"  Margin="10 0 0 0" Text="9999"
+                                                        />
+
+
+                                                    </StackPanel>
+
+                                                </Grid>
+
+
+                                                <TextBox Grid.Row="4" Name="TextBoxSkills"
+                                                    Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"
+                                                    Margin="20 20 20 20" materialDesign:HintAssist.Foreground="#FFAB00"
+                                                    VerticalAlignment="Center"
+                                                    Text="Skills" FontSize="20"
+                                                    AcceptsReturn="True"
+                                                    TextWrapping="Wrap"
+                                                   IsReadOnly="True"
+                                                    materialDesign:HintAssist.Hint="Required skills"/>
+
+
+                                                <TextBox Grid.Row="5" Name="TextBoxMore" IsReadOnly="True"
+                                                    Style="{StaticResource MaterialDesignFilledTextFieldTextBox}"
+                                                         Margin="20" materialDesign:HintAssist.Foreground="#FFAB00"
+                                                         VerticalAlignment="Center"
+                                                         Text="More" FontSize="16"
+                                                    AcceptsReturn="True"
+                                                    TextWrapping="Wrap"
+                                                    materialDesign:HintAssist.Hint="More..."/>
+
+
+
+
+                                            </Grid>
+
+                                        </ScrollViewer>
+
+                                    </Grid>
+                                    
+
+                                    <Grid Grid.Row="1" Background="White">
+
+                                  
+
+                                    <Border   Background="#0097A7" 
+                                         CornerRadius=" 0 10 0 0" Width="168"  VerticalAlignment="Bottom" HorizontalAlignment="Left">
+
+
+                                        <Grid >
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+
+                                            <Button Grid.Column="0" Margin="10" Name="ButtonAdd"
+                                Style="{StaticResource MaterialDesignFloatingActionLightButton}" Click="ButtonAdd_OnClick"
+                                ToolTip="Add" Width="36" Foreground="White" Height="36" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                                <materialDesign:PackIcon
+                                    Kind="Add"
+                                    Height="24"
+                                    Width="24" />
+                                            </Button>
+
+                                            <Button Grid.Column="1" Margin="10"
+                                    Style="{StaticResource MaterialDesignFloatingActionButton}"
+                                    ToolTip="Edit" Width="36" Height="36" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                                <materialDesign:PackIcon
+                                    Kind="Edit"
+                                    Height="24"
+                                    Width="24" />
+                                            </Button>
+
+                                            <Button Grid.Column="2" Margin="10"
+                                    Style="{StaticResource MaterialDesignFloatingActionAccentButton}"
+                                    ToolTip="Delete" Foreground="White" Width="36" Height="36" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                                <materialDesign:PackIcon
+                                    Kind="DeleteOutline"
+                                    Height="24"
+                                    Width="24" />
+                                            </Button>
+
+
+                                        </Grid>
+
+
+                                    </Border>
+                                    <Border  Grid.Row="1" Background="#0097A7"  Padding="0" Margin="0"
+                                             CornerRadius=" 10 0 0 0" Width="50" Height="56" VerticalAlignment="Bottom" HorizontalAlignment="Right">
+                                        <!--Command="{x:Static materialDesign:Flipper.FlipCommand}"-->
+                                            <Button  Margin="0" Background="#00636D" BorderBrush="#00636D"  
+                                                Style="{StaticResource MaterialDesignFloatingActionButton}"
+                                                ToolTip="Request" Width="36" Height="36" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                            <materialDesign:PackIcon
+                                                Kind="ReadMoreOutline"
+                                                Height="24"
+                                                Width="24" />
+                                        </Button>
+
+                                    </Border>
+
+                                    </Grid>
+                                       
+
+
+
+                                </Grid>
+
+                                    <!--</materialDesign:Flipper.FrontContent>
+                                        <materialDesign:Flipper.BackContent >
+                                            <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0">
+                                        <Button Width="500" Height="500"  
+                                                Command="{x:Static materialDesign:Flipper.FlipCommand}">dsd</Button>
+                                    </Grid>
+
+                                </materialDesign:Flipper.BackContent>
+
+                                </materialDesign:Flipper>-->
+                                    
+
+
+
+                                <GridSplitter  Name="GridSplitter" Grid.Column="1"
+                                   Width="10"   Background="#0097A7" HorizontalAlignment="Center" VerticalAlignment="Stretch" >
+
+                                </GridSplitter>
+
+
+
+                                <!-- ////////////////// -->
+                                <materialDesign:DialogHost Grid.Column="2" Name="DialogHostWaitPost">
+                                    <materialDesign:DialogHost.DialogContent>
+                                        <ProgressBar
+                                 Style="{DynamicResource MaterialDesignCircularProgressBar}"
+                                 HorizontalAlignment="Center"
+                                 Margin="16"
+                                 IsIndeterminate="True"
+                                 Value="0" />
+                                    </materialDesign:DialogHost.DialogContent>
+                                    <Grid Grid.Column="2">
+
+
+                                        <ScrollViewer  VerticalScrollBarVisibility="Hidden"  VirtualizingStackPanel.IsVirtualizing="True"   HorizontalScrollBarVisibility="Disabled">
+
+
+                                            <StackPanel  VirtualizingStackPanel.IsVirtualizing="True"    VirtualizingStackPanel.VirtualizationMode="Recycling" 
+                                                            HorizontalAlignment="Center" Name="StackPanelPost" Orientation="Vertical">
+                                                <StackPanel.Children>
+                                                    <VirtualizingStackPanel   VirtualizingStackPanel.IsVirtualizing="True" Orientation="Vertical" VirtualizationMode="Recycling"></VirtualizingStackPanel>
+                                                </StackPanel.Children>
+
+                                                <!--<ListBox Name="Box" VirtualizingStackPanel.IsVirtualizing="True"    VirtualizingStackPanel.VirtualizationMode="Recycling" >
+
+                                                            </ListBox>-->
+
+                                                <!--<Border  Background="DarkOrange" Margin="0 25 0 25"   Width="500" Height="300" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"></Border>
+                                                <Border  Background="BlueViolet" Margin="0 25 0 25"   Width="500" Height="300" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"></Border>
+                                                <Border  Background="LightCoral" Margin="0 25 0 25"   Width="500" Height="300" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"></Border>
+                                                <Border  Background="BlueViolet" Margin="0 25 0 25"   Width="500" Height="300" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"></Border>
+                                                <Border  Background="Blue" Margin="0 25 0 25"   Width="500" Height="300" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"></Border>
+                                                <Border  Background="BlueViolet" Margin="0 25 0 25"   Width="500" Height="300" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"></Border>
+                                                <Border  Background="Lime" Margin="0 25 0 25"   Width="500" Height="300" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"></Border>
+                                                <Border  Background="BlueViolet" Margin="0 25 0 25"   Width="500" Height="300" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"></Border>
+                                                <Border  Background="Red" Margin="0 25 0 25"   Width="500" Height="300" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"></Border>
+                                                <Border  Background="DarkOrchid" Margin="0 25 0 25"   Width="500" Height="300" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"></Border>
+                                                <Border  Background="MediumSpringGreen" Margin="0 25 0 25"   Width="500" Height="300" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"></Border>
+                                                <Border  Background="BlueViolet" Margin="0 25 0 25"   Width="500" Height="300" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"></Border>
+                                                <Border  Background="BlueViolet" Margin="0 25 0 25"   Width="500" Height="300" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"></Border>
+                                                <Border  Background="Gold" Margin="0 25 0 25"   Width="500" Height="300" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"></Border>
+                                                <Border  Background="PaleVioletRed" Margin="0 25 0 25"   Width="500" Height="300" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"></Border>
+                                                <Border  Background="PaleGreen" Margin="0 25 0 25"   Width="500" Height="300" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"></Border>-->
+
+                                            </StackPanel>
+
+
+
+                                        </ScrollViewer>
+                                        <materialDesign:Snackbar 
+                                                IsActive="False" Name="Snackbar">
+                                            <materialDesign:SnackbarMessage
+                                                    Content="New Post"
+                                                    ActionContent="Check" ActionClick="SnackbarMessage_OnActionClick" />
+                                        </materialDesign:Snackbar>
+
+                                    </Grid>
+
+                                </materialDesign:DialogHost>
+
+
+                                <Grid Grid.Column="3"  Name="Grid3"
+                          Background="#0097A7" 
+                          materialDesign:ShadowAssist.ShadowDepth="Depth3"
+                          materialDesign:ShadowAssist.ShadowEdges="Bottom,Left">
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="40"></RowDefinition>
+                                        <RowDefinition Height="40"></RowDefinition>
+                                        <RowDefinition Height="40"></RowDefinition>
+                                        <RowDefinition Height="40"></RowDefinition>
+                                        <RowDefinition Height="*"></RowDefinition>
+
+
+                                    </Grid.RowDefinitions>
+
+
+                                    <Button Grid.Row="0" 
+                                Style="{StaticResource MaterialDesignRaisedButton}"
+                                materialDesign:ButtonProgressAssist.Value="-1"
+                                materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
+                                materialDesign:ButtonProgressAssist.IsIndeterminate="True"
+                                Content="Post FILTERING"
+                                />
+
+                                    <TextBlock Grid.Row="1"
+                             Foreground="White"      Margin="20 0 0 0" HorizontalAlignment="Left" VerticalAlignment="Center"
+                            Style="{StaticResource MaterialDesignButtonTextBlock}">
+                           Order :
+                                    </TextBlock>
+
+
+                                    <materialDesign:ColorZone Grid.Row="2"
+                            Mode="PrimaryMid"  VerticalAlignment="Center" HorizontalAlignment="Center">
+                                        <StackPanel
+                                Orientation="Horizontal"
+                               >
+                                            <RadioButton
+                                    Style="{StaticResource MaterialDesignTabRadioButton}"
+                                    Margin="4"
+                                    IsChecked="True"
+                                    Content="Ascending" />
+                                            <RadioButton
+                                    Style="{StaticResource MaterialDesignTabRadioButton}"
+                                    Margin="4"
+                                    IsChecked="False"
+                                    Content="descending "/>
+
+                                        </StackPanel>
+                                    </materialDesign:ColorZone>
+
+
+                                    <TextBlock Grid.Row="3"
+                                   Foreground="White"      Margin="20 0 0 0" HorizontalAlignment="Left" VerticalAlignment="Center"
+                                   Style="{StaticResource MaterialDesignButtonTextBlock}">
+                            Select Search :
+                                    </TextBlock>
+
+                                    <Separator Grid.Row="3" VerticalAlignment="Bottom" Margin="10 0 10 0"></Separator>
+
+                                    <ScrollViewer Grid.Row="4" VerticalScrollBarVisibility="Hidden" >
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="60"></RowDefinition>
+                                                <RowDefinition Height="60"></RowDefinition>
+                                                <RowDefinition Height="60"></RowDefinition>
+                                                <RowDefinition Height="60"></RowDefinition>
+                                                <RowDefinition Height="60"></RowDefinition>
+                                                <RowDefinition Height="60"></RowDefinition>
+                                                <RowDefinition Height="60"></RowDefinition>
+                                                <RowDefinition Height="100"></RowDefinition>
+                                                <RowDefinition Height="Auto"></RowDefinition>
+                                                <RowDefinition Height="Auto"></RowDefinition>
+                                            </Grid.RowDefinitions>
+
+                                            <Grid Grid.Row="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                                </Grid.ColumnDefinitions>
+                                                <ToggleButton Grid.Column="0" Name="ToggleButtonSpecification"
+                                                   Style="{StaticResource MaterialDesignSwitchAccentToggleButton}"
+                                                   Margin="10" VerticalAlignment="Center"  Unchecked="ToggleButtonSpecification_OnUnchecked"
+                                                   IsChecked="False" HorizontalAlignment="Center" />
+
+                                                <ComboBox  Grid.Column="1"  Name="ComboBoxSpecification" SelectedValuePath="Id" DisplayMemberPath="Name"
+                                               materialDesign:HintAssist.Hint="Search Specification"  SelectionChanged="ComboBoxSpecification_OnSelectionChanged"
+                                              IsEnabled="{Binding Path=IsChecked, ElementName=ToggleButtonSpecification}" Margin="5 0 10 0" materialDesign:HintAssist.Foreground="White"
+                                               materialDesign:HintAssist.HintOpacity=".26" >
+                                                </ComboBox>
+
+                                            </Grid>
+
+                                            <Grid Grid.Row="1">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                                </Grid.ColumnDefinitions>
+                                                <ToggleButton Grid.Column="0" Name="ToggleButtonArea"
+                                          Style="{StaticResource MaterialDesignSwitchAccentToggleButton}"
+                                          Margin="10" VerticalAlignment="Center"
+                                          IsChecked="False" HorizontalAlignment="Center" />
+
+                                                <ComboBox Grid.Column="1" Name="ComboBoxArea" SelectedValuePath="Id" DisplayMemberPath="Name"
+                                      materialDesign:HintAssist.Hint="Search Area"  
+                                      IsEnabled="{Binding ElementName=ToggleButtonArea , Path=IsChecked}" Margin="5 0 10 0" materialDesign:HintAssist.Foreground="White"
+                                      materialDesign:HintAssist.HintOpacity=".26">
+                                                </ComboBox>
+
+                                            </Grid>
+
+                                            <Grid Grid.Row="2">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                                </Grid.ColumnDefinitions>
+                                                <ToggleButton Grid.Column="0" Name="ToggleButtonCompany"
+                                          Style="{StaticResource MaterialDesignSwitchToggleButton}"
+                                          Margin="10" VerticalAlignment="Center"
+                                          IsChecked="False" HorizontalAlignment="Center" />
+
+                                                <ComboBox Grid.Column="1" Name="ComboBoxCompany" SelectedValuePath="Id" DisplayMemberPath="Name"
+                                      materialDesign:HintAssist.Hint="Search Company" 
+                                      IsEnabled="{Binding ElementName=ToggleButtonCompany , Path=IsChecked}" Margin="5 0 10 0" materialDesign:HintAssist.Foreground="White"
+                                      materialDesign:HintAssist.HintOpacity=".26">
+                                                </ComboBox>
+
+                                            </Grid>
+
+                                            <Grid Grid.Row="3">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                                </Grid.ColumnDefinitions>
+                                                <ToggleButton Grid.Column="0" Name="ToggleButtonCategory"
+                                        Style="{StaticResource MaterialDesignSwitchToggleButton}"
+                                                  Margin="10" VerticalAlignment="Center"
+                                                  IsChecked="False" HorizontalAlignment="Center">
+                                                    <materialDesign:PackIcon
+                                            Kind="Star"
+                                            RenderTransformOrigin=".5,.5">
+                                                        <materialDesign:PackIcon.RenderTransform>
+                                                            <RotateTransform
+                                                    Angle="45" />
+                                                        </materialDesign:PackIcon.RenderTransform>
+                                                    </materialDesign:PackIcon>
+                                                    <materialDesign:ToggleButtonAssist.OnContent>
+                                                        <materialDesign:PackIcon
+                                                Kind="Star" />
+                                                    </materialDesign:ToggleButtonAssist.OnContent>
+                                                </ToggleButton>
+
+
+                                                <ComboBox Grid.Column="1" Name="ComboBoxCatgory" SelectedValuePath="Id" DisplayMemberPath="Name"
+                                      materialDesign:HintAssist.Hint="Search Category"
+                                      IsEnabled="{Binding ElementName=ToggleButtonCategory , Path=IsChecked}" Margin="5 0 10 0" materialDesign:HintAssist.Foreground="White"
+                                      materialDesign:HintAssist.HintOpacity=".26">
+                                                </ComboBox>
+
+                                            </Grid>
+
+                                            <Grid Grid.Row="4">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                                </Grid.ColumnDefinitions>
+                                                <ToggleButton Grid.Column="0"
+                                          Style="{StaticResource MaterialDesignSwitchToggleButton}"
+                                          Margin="10" VerticalAlignment="Center"
+                                          IsChecked="False" HorizontalAlignment="Center" />
+
+                                                <TextBox Grid.Column="1"  
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                   VerticalAlignment="Center" Margin="5 0 10 0" materialDesign:HintAssist.Foreground="White" >
+                                                    <materialDesign:HintAssist.Hint>
+                                                        <StackPanel
+                                        Orientation="Horizontal"
+                                        Margin="-2 0 0 0">
+                                                            <materialDesign:PackIcon
+                                            Kind="Coin" Margin="0 0 10 0" />
+                                                            <TextBlock>
+                                            Salary
+                                                            </TextBlock>
+                                                        </StackPanel>
+                                                    </materialDesign:HintAssist.Hint>
+                                                </TextBox>
+
+                                            </Grid>
+
+                                            <Grid Grid.Row="5">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                                </Grid.ColumnDefinitions>
+                                                <ToggleButton Grid.Column="0"
+                                          Style="{StaticResource MaterialDesignSwitchToggleButton}"
+                                          Margin="10" VerticalAlignment="Center"
+                                          IsChecked="False" HorizontalAlignment="Center" />
+
+                                                <TextBox Grid.Column="1"  
+                                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                     VerticalAlignment="Center" Margin="5 0 10 0" materialDesign:HintAssist.Foreground="White" >
+                                                    <materialDesign:HintAssist.Hint>
+                                                        <StackPanel
+                                        Orientation="Horizontal"
+                                        Margin="-2 0 0 0">
+                                                            <materialDesign:PackIcon
+                                            Kind="ClockOutline" Margin="0 0 10 0"/>
+                                                            <TextBlock>
+                                            Working hours
+                                                            </TextBlock>
+                                                        </StackPanel>
+                                                    </materialDesign:HintAssist.Hint>
+                                                </TextBox>
+
+                                            </Grid>
+
+                                            <Grid Grid.Row="6">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                                </Grid.ColumnDefinitions>
+                                                <ToggleButton Grid.Column="0"
+                                                  Style="{StaticResource MaterialDesignSwitchToggleButton}"
+                                                  Margin="10" VerticalAlignment="Center"
+                                                  IsChecked="False" HorizontalAlignment="Center" />
+
+                                                <TextBox Grid.Column="1"  
+                                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                             VerticalAlignment="Center" Margin="5 0 10 0" materialDesign:HintAssist.Foreground="White" >
+                                                    <materialDesign:HintAssist.Hint>
+                                                        <StackPanel
+                                                Orientation="Horizontal"
+                                                Margin="-2 0 0 0">
+                                                            <materialDesign:PackIcon
+                                                    Kind="Calendars" Margin="0 0 10 0" />
+                                                            <TextBlock>
+                                                    Age
+                                                            </TextBlock>
+                                                        </StackPanel>
+                                                    </materialDesign:HintAssist.Hint>
+                                                </TextBox>
+
+                                            </Grid>
+
+                                            <Separator Grid.Row="7"  VerticalAlignment="Top" Margin="10 10 10 0"></Separator>
+
+
+                                            <Grid  Grid.Row="7">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="*"></RowDefinition>
+                                                    <RowDefinition Height="*"></RowDefinition>
+                                                </Grid.RowDefinitions>
+
+                                                <Grid Grid.Row="0">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                                    </Grid.ColumnDefinitions>
+
+                                                    <CheckBox Grid.Column="0"
+                                                  IsChecked="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10 0 0 0">
+                                                        All
+                                                    </CheckBox>
+
+                                                    <CheckBox Grid.Column="1"
+                                                  IsChecked="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10 0 0 0">
+                                                        Most Rate
+                                                    </CheckBox>
+
+                                                </Grid>
+
+                                                <StackPanel Grid.Row="1" >
+                                                    <materialDesign:PackIcon   Kind="MenuSwapOutline"
+                                        Height="25" Width="25" Padding="0" Margin="0"
+                                        VerticalAlignment="Center" HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5" >
+                                                        <materialDesign:PackIcon.RenderTransform>
+                                                            <TransformGroup>
+                                                                <ScaleTransform/>
+                                                                <SkewTransform/>
+                                                                <RotateTransform Angle="180"/>
+                                                                <TranslateTransform/>
+                                                            </TransformGroup>
+                                                        </materialDesign:PackIcon.RenderTransform>
+                                                    </materialDesign:PackIcon>
+                                                    <Label Content="Scroll down-up"   VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
+                                                </StackPanel>
+
+
+                                            </Grid>
+
+
+                                            <Grid Grid.Row="8">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="70"></RowDefinition>
+                                                    <RowDefinition Height="*"></RowDefinition>
+                                                </Grid.RowDefinitions>
+                                                <ToggleButton
+                                        Content="×"
+                                        Style="{StaticResource MaterialDesignActionAccentToggleButton}"
+                                        IsChecked="False"
+                                        ToolTip="Search by date" />
+                                                <Viewbox Grid.Row="1"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+
+                                                    <Viewbox.Effect>
+                                                        <DropShadowEffect BlurRadius="40" ShadowDepth="2"></DropShadowEffect>
+                                                    </Viewbox.Effect>
+                                                    <Calendar   IsEnabled="True"
+                                            VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                                     />
+                                                </Viewbox>
+                                            </Grid>
+
+                                        </Grid>
+
+
+
+                                    </ScrollViewer>
+                                </Grid>
+
+
+
+
+
+
+                            </Grid>
+
+
+
+
+                        </Grid>
+
+                    </materialDesign:DialogHost>
+
+
+                </Border>
+
+              
+
+                <materialDesign:TransitionerSlide TransitionOrigin="0.25, 0.75">
+                    <materialDesign:TransitionerSlide.BackwardWipe>
+                        <materialDesign:CircleWipe/>
+                    </materialDesign:TransitionerSlide.BackwardWipe>
+
+                    <Border   Background="#0097A7"  >
+
+
+                        <materialDesign:Card BorderThickness="10"   VerticalAlignment="Center" HorizontalAlignment="Center"
+                                 Background="White"  BorderBrush="#FFAB00"
+                                 Width="400"
+                                 Height="400"
+                                 Padding="10"
+                                 UniformCornerRadius="6">
+                            <Border BorderBrush="#FFAB00" BorderThickness="2" CornerRadius="6" Padding="10">
+
+
+                                <Grid >
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="40"></RowDefinition>
+                                        <RowDefinition Height="*"></RowDefinition>
+                                        <RowDefinition Height="*"></RowDefinition>
+                                        <RowDefinition Height="*"></RowDefinition>
+                                        <RowDefinition Height="40"></RowDefinition>
+                                    </Grid.RowDefinitions>
+
+                                    <TextBlock Grid.Row="0"  Text="Register Company" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                       Foreground="#FFAB00" FontWeight="Thin" Style="{StaticResource MaterialDesignHeadlineTextBlock}"/>
+
+
+
+                                    <ComboBox Grid.Row="1" 
+                                          Name="ComboBoxRegisterCompany"
+                                          DisplayMemberPath="Name" SelectedValuePath="Id"
+                                          materialDesign:HintAssist.Hint="Choose Company"
+                                          IsEditable="True" Margin="5" FontSize="24"
+                                          materialDesign:HintAssist.HintOpacity=".26">
+                                    </ComboBox>
+
+                                    <StackPanel  Grid.Row="2">
+                                        <CheckBox
+                                            x:Name="CheckBoxKey"
+                                            IsChecked="False"
+                                            Margin="0,0,0,8">
+                                            had Key?
+                                        </CheckBox>
+                                        <PasswordBox Margin="5"
+                                                     Style="{StaticResource MaterialDesignOutlinedPasswordFieldPasswordBox}"
+                                                     VerticalAlignment="Top" 
+                                                     IsEnabled="{Binding Path=IsChecked, ElementName=CheckBoxKey}"
+                                                     materialDesign:HintAssist.Hint="PassKey" />
+                                    </StackPanel>
+
+                                    <StackPanel Grid.Row="3">
+                                        <CheckBox
+                                            x:Name="CheckBoxOther"
+                                            IsChecked="False"
+                                            Margin="0,0,0,8">
+                                            Other Confirm!
+                                        </CheckBox>
+                                        <TextBox
+                                            Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"
+                                            Margin="5"
+                                            VerticalAlignment="Top"
+                                          
+                                            AcceptsReturn="True"
+                                            TextWrapping="Wrap"
+                                            VerticalScrollBarVisibility="Auto"
+                                            materialDesign:HintAssist.Hint="Write your Confirm"
+                                            IsEnabled="{Binding Path=IsChecked, ElementName=CheckBoxOther}" />
+                                    </StackPanel>
+
+                                    <Button Grid.Row="4" Name="ButtonRegeste" 
+                                        Style="{StaticResource MaterialDesignRaisedAccentButton}"
+                                        Width="150"   Foreground="White" Click="ButtonRegeste_OnClick"
+                                        Content="Regeste"
+                                        materialDesign:RippleAssist.Feedback="#0097A7">
+
+
+                                    </Button>
+
+                                    <ToggleButton  Grid.Row="4" Name="ToggleBack"   Click="ToggleBack_OnClick"
+                                        Style="{StaticResource MaterialDesignFlatToggleButton}"
+                                        ToolTip="Back" VerticalAlignment="Bottom" HorizontalAlignment="Right">
+                                        <materialDesign:PackIcon
+                                            Kind="ExitToApp"
+                                            Height="21"
+                                            Width="21" />
+                                    </ToggleButton>
+
+
+                                </Grid>
+                            </Border>
+
+                        </materialDesign:Card>
+
+
+
+                    </Border>
+
+                </materialDesign:TransitionerSlide>
+
+
+                <materialDesign:TransitionerSlide >
+                    <materialDesign:TransitionerSlide.ForwardWipe>
+                        <materialDesign:SlideOutWipe/>
+                    </materialDesign:TransitionerSlide.ForwardWipe>
+                    <Border Background="Aqua">
+
+                    </Border>
+                </materialDesign:TransitionerSlide>
+
+            </materialDesign:Transitioner>
+
+        </Grid>
+
+    </materialDesign:DialogHost>
+</Window>
+
+
+<!--<materialDesign:Transitioner  Name="Transitioner"  IsVisibleChanged="Transitioner_OnIsVisibleChanged" Visibility="Visible"  SelectedIndex="0" DefaultTransitionOrigin="0.5,0.5">
+                -->
+<!--Background="#FFAB00"  590097A7-->
+<!--
+                <Border    Background="Transparent">-->
+
+

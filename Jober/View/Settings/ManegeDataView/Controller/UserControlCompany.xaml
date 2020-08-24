@@ -1,0 +1,393 @@
+﻿<UserControl x:Class="Jober.View.Settings.ManegeDataView.Controller.UserControlCompany"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Jober.View.Settings.ManegeDataView.Controller"
+             mc:Ignorable="d" 
+
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             TextElement.FontWeight="Regular"
+             TextElement.FontSize="13"
+             TextOptions.TextFormattingMode="Ideal"
+             TextOptions.TextRenderingMode="Auto"   
+             FontFamily="{DynamicResource MaterialDesignFont}"
+
+          
+          
+             d:DesignHeight="450" d:DesignWidth="680"    >
+
+    <materialDesign:DialogHost Name="DialogHostWait">
+        <materialDesign:DialogHost.DialogContent>
+            <ProgressBar
+                Style="{DynamicResource MaterialDesignCircularProgressBar}"
+                HorizontalAlignment="Center"
+                Margin="16"
+                IsIndeterminate="True"
+                Value="0" />
+        </materialDesign:DialogHost.DialogContent>
+        <Grid>
+
+            <Grid Margin="0">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="45"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="10" ></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="40"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Border Grid.Row="0" CornerRadius="0 0 15 15" Background="#FF006878" Padding="15 5 15 5" >
+
+
+                    <materialDesign:Card MaxWidth="500" VerticalAlignment="Center" Width="400"  HorizontalAlignment="Left"
+                                                 materialDesign:ShadowAssist.ShadowDepth="Depth4"  >
+
+                        <StackPanel  Grid.Row="0" Orientation="Horizontal"  >
+                            <materialDesign:PackIcon Kind="Search" Margin="10 10 10 5"  Height="20" HorizontalAlignment="Center" VerticalAlignment="Center"  />
+                            <TextBox TabIndex="-1" Name="TextBoxSearch" TextChanged="TextBoxSearch_OnTextChanged"  VerticalAlignment="Center" Width="250"
+                                             materialDesign:HintAssist.Hint="Search" />
+                            <ComboBox x:Name="ComboBoxBy" Width="80"  SelectedValuePath="Id" DisplayMemberPath="Name"  Padding="0"
+                                          materialDesign:HintAssist.Hint="By"  Margin="20 0 0 3"  VerticalAlignment="Center" HorizontalAlignment="Center"
+                                          Style="{StaticResource MaterialDesignFloatingHintComboBox}" SelectedIndex="0"/>
+
+                        </StackPanel>
+
+                    </materialDesign:Card>
+
+
+
+                </Border>
+
+                <Grid Margin="10 10 10 0" Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="10" ></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+
+
+                    <Grid Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="40"></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <Border Grid.Row="0" CornerRadius="15 15 0 0" Background="#FF006878" Padding="15 5 15 5" >
+                            <StackPanel Margin="0" Orientation="Horizontal">
+                                <materialDesign:Card MaxWidth="200" VerticalAlignment="Center" Width="200"  HorizontalAlignment="Left"
+                                                 materialDesign:ShadowAssist.ShadowDepth="Depth4"  
+                            >
+                                    <StackPanel  Grid.Row="0" Orientation="Horizontal"  >
+                                        <materialDesign:PackIcon Kind="Search" Margin="10 10 10 5"  Height="20" HorizontalAlignment="Center" VerticalAlignment="Center"  />
+                                        <TextBox TabIndex="-1" Name="TextBoxSearchSpecification"   VerticalAlignment="Center" Width="150"
+                                             materialDesign:HintAssist.Hint="Search by Specification" />
+                                    </StackPanel>
+                                </materialDesign:Card>
+                                <Label Content="Specifications" FontSize="20"  Opacity=".5" Margin="50 0 0 0" VerticalAlignment="Center" ></Label>
+                            </StackPanel>
+
+                        </Border>
+
+
+                        <DataGrid  Name="DataGridSpecification" Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"  IsSynchronizedWithCurrentItem="True"   IsReadOnly="True"    CanUserAddRows="False"   FontSize="14"   materialDesign:DataGridAssist.ColumnHeaderPadding="7"
+                           BorderBrush="#60CB95"   CanUserSortColumns="True" AutoGenerateColumns="false"  materialDesign:DataGridAssist.CellPadding="10 8 8 8"
+                  >
+                            <DataGrid.Resources>
+                                <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                                    <Setter Property="Background" Value="#F7EDEDED" />
+                                </Style>
+                            </DataGrid.Resources>
+
+                            <DataGrid.Columns >
+
+                                <DataGridTextColumn Width="*" Header="Name" Binding="{Binding Specification.Name}">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+                                            <Setter Property="ToolTip" Value="{Binding Text, 
+                                 RelativeSource={RelativeSource Self}}"/>
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+
+
+                                <DataGridTemplateColumn Width="Auto" Header="Operation">
+
+                                    <DataGridTemplateColumn.CellTemplate>
+
+                                        <DataTemplate >
+
+                                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+
+                                                <Button 	 ToolTip="Specification"	Width="20" Height="20" materialDesign:ShadowAssist.ShadowDepth="Depth0"  BorderThickness="0" Name="Button"   CommandParameter="{Binding Id}"   >
+
+                                                    <Button.Background>
+                                                        <ImageBrush ImageSource="../../../../Resource/option/document.png">
+
+                                                        </ImageBrush>
+                                                    </Button.Background>
+
+                                                </Button>
+
+                                                
+
+                                            </StackPanel>
+
+                                        </DataTemplate>
+
+                                    </DataGridTemplateColumn.CellTemplate>
+
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+
+                        </DataGrid>
+
+
+
+                        <TextBox  Name="TextBoxNumSpecification" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center" 
+                                  materialDesign:HintAssist.Hint="Number" materialDesign:HintAssist.Foreground="Black"  FontSize="12" Foreground="#FFFFAB00" Width="120" Margin="10 0 0 0" Padding="0" 
+                                  Style="{StaticResource MaterialDesignFloatingHintTextBox}"  IsReadOnly="True"  />
+
+                    </Grid>
+
+
+                    <GridSplitter   Name="GridSplitter" Grid.Column="1" Width="3" MouseLeave="GridSplitter_OnMouseLeave" MouseEnter="GridSplitter_OnMouseEnter"  Background="#FF006878" HorizontalAlignment="Center" VerticalAlignment="Stretch" />
+
+
+                    <Grid Grid.Column="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="40"></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <Border Grid.Row="0" CornerRadius="15 15 0 0" Background="#FF006878" Padding="15 5 15 5" >
+                            <StackPanel Margin="0" Orientation="Horizontal">
+                                <materialDesign:Card MaxWidth="200" VerticalAlignment="Center" Width="200"  HorizontalAlignment="Left"
+                                                 materialDesign:ShadowAssist.ShadowDepth="Depth4"  
+                            >
+                                    <StackPanel  Grid.Row="0" Orientation="Horizontal"  >
+                                        <materialDesign:PackIcon Kind="Search" Margin="10 10 10 5"  Height="20" HorizontalAlignment="Center" VerticalAlignment="Center"  />
+                                        <TextBox TabIndex="-1" Name="TextBoxSearchArea"   VerticalAlignment="Center" Width="150"
+                                             materialDesign:HintAssist.Hint="Search by Area" />
+                                    </StackPanel>
+                                </materialDesign:Card>
+                                <Label Content="Areas" FontSize="20"  Opacity=".5" Margin="50 0 0 0" VerticalAlignment="Center" ></Label>
+                            </StackPanel>
+                        </Border>
+
+
+                        <DataGrid  Name="DataGridArea" Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"  IsSynchronizedWithCurrentItem="True"   IsReadOnly="True"    CanUserAddRows="False"   FontSize="14"   materialDesign:DataGridAssist.ColumnHeaderPadding="7"
+                           BorderBrush="#60CB95"   CanUserSortColumns="True" AutoGenerateColumns="false"  materialDesign:DataGridAssist.CellPadding="10 8 8 8"
+                  >
+                            <DataGrid.Resources>
+                                <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                                    <Setter Property="Background" Value="#F7EDEDED" />
+                                </Style>
+                            </DataGrid.Resources>
+
+                            <DataGrid.Columns >
+
+                                <DataGridTextColumn Width="*" Header="Name" Binding="{Binding Area.Name}">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+                                            <Setter Property="ToolTip" Value="{Binding Text, 
+                                 RelativeSource={RelativeSource Self}}"/>
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+
+
+                                <DataGridTemplateColumn Width="Auto" Header="Operation">
+
+                                    <DataGridTemplateColumn.CellTemplate>
+
+                                        <DataTemplate >
+
+                                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+
+                                                <Button 	  ToolTip="Area"	Width="20" Height="20" materialDesign:ShadowAssist.ShadowDepth="Depth0"  BorderThickness="0" Name="Button"   CommandParameter="{Binding Id}"   >
+
+                                                    <Button.Background>
+                                                        <ImageBrush ImageSource="../../../../Resource/option/user.png">
+
+                                                        </ImageBrush>
+                                                    </Button.Background>
+
+                                                </Button>
+
+                         
+
+                                            </StackPanel>
+
+                                        </DataTemplate>
+
+                                    </DataGridTemplateColumn.CellTemplate>
+
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+
+                        </DataGrid>
+
+
+
+                        <TextBox  Name="TextBoxNumArea" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center"
+                                  materialDesign:HintAssist.Hint="Number" materialDesign:HintAssist.Foreground="Black"  FontSize="12" Foreground="#FFFFAB00" Width="120" Margin="10 0 0 0" Padding="0" 
+                                  Style="{StaticResource MaterialDesignFloatingHintTextBox}"  IsReadOnly="True"  />
+
+
+
+                    </Grid>
+
+
+                </Grid>
+
+                <GridSplitter   Name="GridSplitterAll" Grid.Row="2" Height="3" MouseLeave="GridSplitter_OnMouseLeave" MouseEnter="GridSplitter_OnMouseEnter"  Background="#FF006878" HorizontalAlignment="Stretch" VerticalAlignment="Center" />
+
+
+                <DataGrid  Name="DataGridCompany" Grid.Row="3" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"  IsSynchronizedWithCurrentItem="True"   IsReadOnly="True"    CanUserAddRows="False"   FontSize="14"   materialDesign:DataGridAssist.ColumnHeaderPadding="7"
+                           BorderBrush="#60CB95"   CanUserSortColumns="True" AutoGenerateColumns="false"  materialDesign:DataGridAssist.CellPadding="10 8 8 8"  SelectionChanged="DataGridCompany_OnSelectionChanged"  
+                  >
+                    <DataGrid.Resources>
+                        <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                            <Setter Property="Background" Value="#F7EDEDED" />
+                        </Style>
+                    </DataGrid.Resources>
+
+                    <DataGrid.Columns >
+
+                        <DataGridTextColumn Width="*" Header="Name" Binding="{Binding Name}">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+                                    <Setter Property="ToolTip" Value="{Binding Text, 
+                                 RelativeSource={RelativeSource Self}}"/>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Width="*" Header="Mail" Binding="{Binding Mail}">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+                                    <Setter Property="ToolTip" Value="{Binding Text, 
+                                 RelativeSource={RelativeSource Self}}"/>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Width="*" Header="Phone" Binding="{Binding Phone}">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+                                    <Setter Property="ToolTip" Value="{Binding Text, 
+                                 RelativeSource={RelativeSource Self}}"/>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Width="*" Header="Address" Binding="{Binding Address}">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+                                    <Setter Property="ToolTip" Value="{Binding Text, 
+                                 RelativeSource={RelativeSource Self}}"/>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Width="*" Header="Field" Binding="{Binding Field.Name}">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+                                    <Setter Property="ToolTip" Value="{Binding Text, 
+                                 RelativeSource={RelativeSource Self}}"/>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Width="*" Header="Description" Binding="{Binding Description}">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+                                    <Setter Property="ToolTip" Value="{Binding Text, 
+                                 RelativeSource={RelativeSource Self}}"/>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+
+
+                        <DataGridTemplateColumn Width="Auto" Header="Operation">
+
+                            <DataGridTemplateColumn.CellTemplate>
+
+                                <DataTemplate >
+
+                                    <StackPanel Orientation="Horizontal">
+
+                                        <Button 	Margin="0 0 10 0"  ToolTip="Show"	Width="20" Height="20" materialDesign:ShadowAssist.ShadowDepth="Depth0"  BorderThickness="0" Name="ButtonShow"   CommandParameter="{Binding Id}"   >
+
+                                            <Button.Background>
+                                                <ImageBrush ImageSource="../../../../Resource/option/view.png">
+
+                                                </ImageBrush>
+                                            </Button.Background>
+
+                                        </Button>
+
+                                        <Button 	Margin="10 0 10 0"  ToolTip="Edit"	Width="20" Height="20" materialDesign:ShadowAssist.ShadowDepth="Depth0"  BorderThickness="0" Name="ButtonEdit"   CommandParameter="{Binding Id}"   >
+
+                                            <Button.Background>
+                                                <ImageBrush ImageSource="../../../../Resource/option/edit.png">
+
+                                                </ImageBrush>
+                                            </Button.Background>
+
+                                        </Button>
+
+                                        <Button ToolTip="Delete"  Width="20" Height="20"  materialDesign:ShadowAssist.ShadowDepth="Depth0"  BorderThickness="0" Name="ButtonDelete"   CommandParameter="{Binding Id}">
+
+                                            <Button.Background>
+                                                <ImageBrush ImageSource="../../../../Resource/option/basket.png">
+
+                                                </ImageBrush>
+                                            </Button.Background>
+
+                                        </Button>
+
+                                    </StackPanel>
+
+                                </DataTemplate>
+
+                            </DataGridTemplateColumn.CellTemplate>
+
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+
+                </DataGrid>
+
+
+                <Grid Grid.Row="4" Margin="0 5 0 0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0"  Margin="20 0 0 0" VerticalAlignment="Center"  HorizontalAlignment="Left"
+                             Style="{StaticResource MaterialDesignRaisedAccentButton }" Width="160"
+                             Name="ButtonAdd"  Click="ButtonAdd_OnClick"
+                             ToolTip="Add" Content="Add">
+                    </Button>
+
+
+                    <TextBox  Name="TextBoxNumCompany" Grid.Column="1"  HorizontalAlignment="Center" VerticalAlignment="Center" 
+                              materialDesign:HintAssist.Hint="Number" materialDesign:HintAssist.Foreground="Black"  FontSize="14" Foreground="#FFFFAB00" Width="120" Margin="10 0 0 0" Padding="0" 
+                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"  IsReadOnly="True"  />
+                </Grid>
+
+
+            </Grid>
+
+        </Grid>
+    </materialDesign:DialogHost>
+</UserControl>

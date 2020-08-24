@@ -1,0 +1,252 @@
+﻿<UserControl x:Class="Jober.View.Settings.ManegeDataView.ManegeData"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Jober.View.Settings.ManegeDataView"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <materialDesign:DialogHost Name="DialogHostWait">
+
+        <materialDesign:DialogHost.DialogContent>
+            <ProgressBar
+                Style="{DynamicResource MaterialDesignCircularProgressBar}"
+                HorizontalAlignment="Center"
+                Margin="16"
+                IsIndeterminate="True"
+                Value="0" />
+        </materialDesign:DialogHost.DialogContent>
+        <Grid>
+
+            <Grid Margin="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="120"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+
+
+                <Grid Grid.Row="0" Background="#000015">
+                    <ScrollViewer HorizontalScrollBarVisibility="Auto" Height="120"
+                                  VerticalScrollBarVisibility="Disabled">
+
+                        <DockPanel Name="DockPanelMange" MaxWidth="1400" MouseLeave="DockPanelMange_OnMouseLeave">
+
+                            <Border Name="BorderUser" BorderThickness="1" Width="200"
+                                    MouseEnter="BorderManege_OnMouseEnter" 
+                                    PreviewMouseLeftButtonDown="BorderUser_OnPreviewMouseLeftButtonDown">
+                                <Border.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#000015" Offset="0" />
+                                        <GradientStop Color="#0097A7" Offset="2" />
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="50"></RowDefinition>
+                                        <RowDefinition Height="30"></RowDefinition>
+                                        <RowDefinition Height="20"></RowDefinition>
+                                    </Grid.RowDefinitions>
+
+                                   
+
+                                    <materialDesign:PackIcon Grid.Row="0" Kind="Users" Width="50" Height="50"
+                                                             VerticalAlignment="Center" HorizontalAlignment="Center"
+                                                             Foreground="White" />
+
+                                    <Label Content="Users" Grid.Row="1" HorizontalAlignment="Center"
+                                           VerticalAlignment="Center" Foreground="White">
+                                   
+                                    </Label>
+
+                                    <Label  Name="LabelUsers" Background="#0097A7" VerticalAlignment="Bottom"
+                                           Grid.Row="2">
+                                    </Label>
+                                </Grid>
+                            </Border>
+
+                            <Border Name="BorderQualification" BorderThickness="1" Width="200"
+                                    MouseEnter="BorderManege_OnMouseEnter">
+                                <Border.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#000015" Offset="0" />
+                                        <GradientStop Color="#0097A7" Offset="2" />
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="50"></RowDefinition>
+                                        <RowDefinition Height="30"></RowDefinition>
+                                        <RowDefinition Height="20"></RowDefinition>
+                                    </Grid.RowDefinitions>
+
+
+                                    <materialDesign:PackIcon Grid.Row="0" Kind="Certificate" Width="50" Height="50"
+                                                             VerticalAlignment="Center" HorizontalAlignment="Center"
+                                                             Foreground="White" />
+                                    <Label Content="Qualifications" Grid.Row="1" HorizontalAlignment="Center"
+                                           VerticalAlignment="Center" Foreground="White">
+                                    </Label>
+                                    <Label Name="LabelQualifications" Background="#0097A7" VerticalAlignment="Bottom"
+                                           Grid.Row="2">
+                                    </Label>
+                                </Grid>
+                            </Border>
+
+                            <Border Name="BorderSpecification" BorderThickness="1" Width="200"
+                                    MouseEnter="BorderManege_OnMouseEnter" MouseLeftButtonDown="BorderSpecification_OnMouseLeftButtonDown">
+                                <Border.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#000015" Offset="0" />
+                                        <GradientStop Color="#0097A7" Offset="2" />
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="50"></RowDefinition>
+                                        <RowDefinition Height="30"></RowDefinition>
+                                        <RowDefinition Height="20"></RowDefinition>
+                                    </Grid.RowDefinitions>
+
+
+                                    <materialDesign:PackIcon Grid.Row="0" Kind="CodeString" Width="50" Height="50"
+                                                             VerticalAlignment="Center" HorizontalAlignment="Center"
+                                                             Foreground="White" />
+                                    <Label Content="Specifications" Grid.Row="1" HorizontalAlignment="Center"
+                                           VerticalAlignment="Center" Foreground="White">
+                                    </Label>
+                                    <Label Name="LabelSpecifications" Background="#0097A7" VerticalAlignment="Bottom"
+                                           Grid.Row="2">
+                                    </Label>
+                                </Grid>
+                            </Border>
+
+                            <Border Name="BorderAre" PreviewMouseLeftButtonDown="BorderAre_OnPreviewMouseLeftButtonDown" BorderThickness="1" Width="200"
+                                    MouseEnter="BorderManege_OnMouseEnter">
+                                <Border.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#000015" Offset="0" />
+                                        <GradientStop Color="#0097A7" Offset="2" />
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="50"></RowDefinition>
+                                        <RowDefinition Height="30"></RowDefinition>
+                                        <RowDefinition Height="20"></RowDefinition>
+                                    </Grid.RowDefinitions>
+
+
+                                    <materialDesign:PackIcon Grid.Row="0" Kind="Location" Width="50" Height="50"
+                                                             VerticalAlignment="Center" HorizontalAlignment="Center"
+                                                             Foreground="White" />
+                                    <Label Content="Areas" Grid.Row="1" HorizontalAlignment="Center"
+                                           VerticalAlignment="Center" Foreground="White">
+                                    </Label>
+                                    <Label Name="LabelAreas" Background="#0097A7" VerticalAlignment="Bottom"
+                                           Grid.Row="2">
+                                    </Label>
+                                </Grid>
+                            </Border>
+
+                            <Border Name="BorderCompany" BorderThickness="1" Width="200"
+                                    MouseEnter="BorderManege_OnMouseEnter"  PreviewMouseLeftButtonDown="BorderCompany_OnPreviewMouseLeftButtonDown">
+                                <Border.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#000015" Offset="0" />
+                                        <GradientStop Color="#0097A7" Offset="2" />
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="50"></RowDefinition>
+                                        <RowDefinition Height="30"></RowDefinition>
+                                        <RowDefinition Height="20"></RowDefinition>
+                                    </Grid.RowDefinitions>
+
+
+                                    <materialDesign:PackIcon Grid.Row="0" Kind="Company" Width="50" Height="50"
+                                                             VerticalAlignment="Center" HorizontalAlignment="Center"
+                                                             Foreground="White" />
+                                    <Label Content="Companies" Grid.Row="1" HorizontalAlignment="Center"
+                                           VerticalAlignment="Center" Foreground="White">
+                                    </Label>
+                                    <Label Name="LabelCompanies" Background="#0097A7" VerticalAlignment="Bottom"
+                                           Grid.Row="2">
+                                    </Label>
+                                </Grid>
+                            </Border>
+
+                            <Border Name="BorderField" BorderThickness="1" Width="200"
+                                    MouseEnter="BorderManege_OnMouseEnter" MouseLeftButtonDown="BorderField_OnMouseLeftButtonDown">
+                                <Border.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#000015" Offset="0" />
+                                        <GradientStop Color="#0097A7" Offset="2" />
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="50"></RowDefinition>
+                                        <RowDefinition Height="30"></RowDefinition>
+                                        <RowDefinition Height="20"></RowDefinition>
+                                    </Grid.RowDefinitions>
+
+                                    <materialDesign:PackIcon Grid.Row="0" Kind="Clipboard" Width="50" Height="50"
+                                                             VerticalAlignment="Center" HorizontalAlignment="Center"
+                                                             Foreground="White" />
+                                    <Label Content="Fields" Grid.Row="1" HorizontalAlignment="Center"
+                                           VerticalAlignment="Center" Foreground="White">
+                                    </Label>
+                                    <Label Name="LabelFields" Background="#0097A7" VerticalAlignment="Bottom"
+                                           Grid.Row="2">
+                                    </Label>
+                                </Grid>
+                            </Border>
+
+                            <Border Name="BorderContract" BorderThickness="1" Width="200"
+                                    MouseEnter="BorderManege_OnMouseEnter">
+                                <Border.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#000015" Offset="0" />
+                                    <GradientStop Color="#0097A7" Offset="2" />
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="50"></RowDefinition>
+                                        <RowDefinition Height="30"></RowDefinition>
+                                        <RowDefinition Height="20"></RowDefinition>
+                                    </Grid.RowDefinitions>
+
+
+                                    <materialDesign:PackIcon Grid.Row="0" Kind="LinkVariant" Width="50" Height="50"
+                                                             VerticalAlignment="Center" HorizontalAlignment="Center"
+                                                             Foreground="White" />
+                                    <Label Content="Contracts" Grid.Row="1" HorizontalAlignment="Center"
+                                           VerticalAlignment="Center" Foreground="White">
+                                    </Label>
+                                    <Label Name="LabelContracts" Background="#0097A7" VerticalAlignment="Bottom"
+                                           Grid.Row="2">
+                                    </Label>
+                                </Grid>
+                            </Border>
+
+
+                        </DockPanel>
+                    </ScrollViewer>
+                </Grid>
+                
+                    <Grid Grid.Row="1">
+                        
+                        <ContentControl Name="ContentControlManageData">
+                           <!-- here Contain A UserControl Manage -->
+                       </ContentControl>
+                    </Grid>
+
+            </Grid>
+
+
+        </Grid>
+    </materialDesign:DialogHost>
+</UserControl>

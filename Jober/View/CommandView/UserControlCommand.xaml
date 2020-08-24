@@ -1,0 +1,88 @@
+﻿<UserControl x:Class="Jober.View.UserControlCommand"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Jober.View"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" d:DesignWidth="430" Height="200" Width="430" Margin="5"  >
+    <materialDesign:DialogHost Name="DialogHostWait">
+
+        <materialDesign:DialogHost.DialogContent>
+            <ProgressBar
+                Style="{DynamicResource MaterialDesignCircularProgressBar}"
+                HorizontalAlignment="Center"
+                Margin="16"
+                IsIndeterminate="True"
+                Value="0" />
+        </materialDesign:DialogHost.DialogContent>
+        
+        <Grid >
+            <Grid.Effect>
+                <DropShadowEffect BlurRadius="20"  RenderingBias="Quality" ShadowDepth="0" >
+                    
+                </DropShadowEffect>
+            </Grid.Effect>
+
+            <Border  >
+                <GroupBox  Name="GroupBoxCommand" Background="White" 
+                Header="Here"    
+                Style="{DynamicResource MaterialDesignGroupBox}"
+                Margin="16" 
+                materialDesign:ShadowAssist.ShadowDepth="Depth3"
+                BorderThickness="5">
+                    
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <RichTextBox Name="RichTextBoxQuery"  FontSize="24" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" IsReadOnly="True" Grid.Row="0" Margin="6,6,6,6">
+                                
+
+                        </RichTextBox>
+
+
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="200*"></ColumnDefinition>
+                                <ColumnDefinition Width="50*"></ColumnDefinition>
+                                <ColumnDefinition Width="50*"></ColumnDefinition>
+                                <ColumnDefinition Width="50*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <Button Name="ButtonExecute" Grid.Column="0" Click="ButtonExecute_OnClick"
+                                Style="{StaticResource MaterialDesignRaisedDarkButton}"  
+                                Width="100" VerticalAlignment="Center"  HorizontalAlignment="Left" Margin="5 0 0 0"
+                                ToolTip="Execute Query">
+                                <materialDesign:PackIcon
+                                    Kind="ArrowRightDropCircleOutline"
+                                    Height="25"
+                                    Width="25" />
+                            </Button>
+
+                            <Button Grid.Column="1" Name="ButtonExpand" VerticalAlignment="Center"   HorizontalAlignment="Center" 
+                                Content="{materialDesign:PackIcon ArrowExpand}" Click="ButtonExpand_OnClick"
+                                ToolTip="Expand" />
+
+                            <Button Grid.Column="2" Name="ButtonEdit" VerticalAlignment="Center"    HorizontalAlignment="Center" 
+                                    Content="{materialDesign:PackIcon BorderColor}" CommandParameter="{Binding Id}" Click="ButtonEdit_OnClick"
+                                    ToolTip="Edit" />
+
+                            <Button Grid.Column="3" Name="ButtonDelete" VerticalAlignment="Center"   HorizontalAlignment="Center" 
+                                    Content="{materialDesign:PackIcon DeleteVariant}"  CommandParameter="{Binding Id}" Click="ButtonDelete_OnClick"
+                                    ToolTip="Delete" />
+
+
+                        </Grid>
+
+
+                    </Grid>
+
+
+                </GroupBox>
+            </Border>
+        </Grid>
+    </materialDesign:DialogHost>
+</UserControl>
