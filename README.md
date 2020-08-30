@@ -1,4 +1,4 @@
-# Jolijober-wpf
+# Jolijober-Desktop
 Example project for big infrastructure
 
 
